@@ -54,6 +54,7 @@ namespace PlayerInstances
 			ScenePlayer.Position = new Vector2(Background.Size.x/2, Background.Size.y - 80);
 			ScenePlayer.SetPlayerNumber(PlayerNumber);
 			ScenePlayer.SetPlayerColor(PlayerColor);
+			ScenePlayer.Background = Background;
 
 			AddChild(ScenePlayer);
 		}

@@ -17,8 +17,6 @@ SouthWall = NodePath("Wall2")
 WestWall = NodePath("Wall1")
 
 [node name="SpaceBackground" parent="." instance=ExtResource("3_awehm")]
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 312.0
 offset_bottom = 400.0
 

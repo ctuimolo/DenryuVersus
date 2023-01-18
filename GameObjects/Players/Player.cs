@@ -1,5 +1,6 @@
 using Godot;
 
+using Backgrounds;
 using World;
 
 namespace Players
@@ -7,23 +8,31 @@ namespace Players
 	public partial class Player : CharacterBody2D
 	{
 
-		[Export] private float _shipSpeed = 180f;
+		[Export] 
+		private float _shipSpeed = 180f;
 		private Vector2 _angularVector = new Vector2(0.71f, 0.71f);
 
-		[Export] private AnimationPlayer _shipAnimator;
-		[Export] private AnimationPlayer _thrustAnimator;
+		[Export] 
+		private AnimationPlayer _shipAnimator;
+		[Export] 
+		private AnimationPlayer _thrustAnimator;
 
-		[Export] private Texture2D	_redShipSprites;
-		[Export] private Texture2D	_blueShipSprites;
-		[Export] private Sprite2D	_shipSprite;
+		[Export] 
+		private Texture2D	_redShipSprites;
+		[Export] 
+		private Texture2D	_blueShipSprites;
+		[Export] 
+		private Sprite2D	_shipSprite;
 
-		[Export] private BulletManager _cannons;
+		[Export] 
+		private BulletManager _cannons;
 
 		private PlayerInputs _playerInputMap;
 		private WorldManager _worldManager;
 
 		public PlayerColors PlayerColor;
 		public Vector2 VelocityChange = Vector2.Zero;
+		public SpaceBackground Background;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -35,7 +44,6 @@ namespace Players
 
 		public void SetPlayerColor(PlayerColors color)
         {
-
 			switch (color)
 			{
 				case PlayerColors.Red:

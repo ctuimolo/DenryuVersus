@@ -43,8 +43,8 @@ _data = {
 "hit": SubResource("Animation_lxmj0")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_77tt6"]
-size = Vector2(4, 11)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tofom"]
+radius = 3.04138
 
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("Animator")]
 script = ExtResource("1_nn30g")
@@ -65,4 +65,4 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 100
 position = Vector2(0, -5.5)
-shape = SubResource("RectangleShape2D_77tt6")
+shape = SubResource("CircleShape2D_tofom")

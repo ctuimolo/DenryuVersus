@@ -8,18 +8,22 @@ namespace Players
 	public partial class BulletManager : Node2D
 	{
 		[Export]
-		PackedScene BulletPackage;
+		public PackedScene BulletPackage;
 
 		[Export]
-		int BulletCount = 32;
+		int BulletCount = 128;
 		int _bulletIndex = 0;
 
 		[Export]
-		AnimationPlayer Animator;
+		public Player OwningPlayer;
+
+		[Export]
+		public AnimationPlayer Animator;
 
 		List<Bullet> _bullets = new List<Bullet>();
 
 		private WorldManager _worldManager;
+
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -31,6 +35,7 @@ namespace Players
 				Bullet newBullet = BulletPackage.Instantiate<Bullet>();
 				newBullet.Visible = false;
 				newBullet.Position = new Vector2(-20, -20);
+				newBullet.Manager = this;
 				_bullets.Add(newBullet);
 			}
 

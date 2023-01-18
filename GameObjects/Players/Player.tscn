@@ -260,8 +260,8 @@ _data = {
 "turn right": SubResource("Animation_gahfy")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbg0l"]
-size = Vector2(6, 5.9375)
+[sub_resource type="CircleShape2D" id="CircleShape2D_01w4b"]
+radius = 6.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
 z_index = 20
@@ -275,9 +275,10 @@ _blueShipSprites = ExtResource("3_dsju8")
 _shipSprite = NodePath("Ship")
 _cannons = NodePath("Cannons")
 
-[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("Animator")]
+[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("OwningPlayer", "Animator")]
 script = ExtResource("5_v7x07")
 BulletPackage = ExtResource("5_8a6in")
+OwningPlayer = NodePath("..")
 Animator = NodePath("AnimationPlayer")
 
 [node name="Burst2" type="Sprite2D" parent="Cannons"]
@@ -324,4 +325,4 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_hbg0l")
+shape = SubResource("CircleShape2D_01w4b")
