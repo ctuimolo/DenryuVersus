@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq4md124cm0k4"]
+
+[ext_resource type="Script" path="res://GameObjects/PlayerInstances/PlayerInstance.cs" id="1_sjjs2"]
+[ext_resource type="PackedScene" uid="uid://d1mk7h4kls77s" path="res://GameObjects/Players/Player.tscn" id="2_6iqvy"]
+[ext_resource type="PackedScene" uid="uid://cn1aj075ycwpw" path="res://GameObjects/Backgrounds/SpaceBackground.tscn" id="3_awehm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_php18"]
+size = Vector2(1, 1)
+
+[node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
+script = ExtResource("1_sjjs2")
+PlayerPackage = ExtResource("2_6iqvy")
+Background = NodePath("SpaceBackground")
+NorthWall = NodePath("Wall4")
+EastWall = NodePath("Wall3")
+SouthWall = NodePath("Wall2")
+WestWall = NodePath("Wall1")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("3_awehm")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 312.0
+offset_bottom = 400.0
+
+[node name="Wall4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+shape = SubResource("RectangleShape2D_php18")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+shape = SubResource("RectangleShape2D_php18")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_php18")
+
+[node name="Wall1" type="StaticBody2D" parent="."]
+scale = Vector2(100, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+shape = SubResource("RectangleShape2D_php18")

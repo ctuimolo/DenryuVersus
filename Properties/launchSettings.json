@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "DenryuVersus": {
+      "commandName": "Project"
+    },
+    "Godot Main": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Projects\\Godot_v4.0-beta12_mono_win64\\Godot_v4.0-beta12_mono_win64.exe",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}
