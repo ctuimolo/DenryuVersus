@@ -15,7 +15,7 @@ step = 0.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BulletManager/Burst2:frame")
+tracks/0/path = NodePath("Cannons/Burst2:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BulletManager/Burst1:frame")
+tracks/1/path = NodePath("Cannons/Burst1:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,7 +42,7 @@ resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BulletManager/Burst2:frame")
+tracks/0/path = NodePath("Cannons/Burst2:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,7 +54,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BulletManager/Burst1:frame")
+tracks/1/path = NodePath("Cannons/Burst1:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -102,7 +102,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_llvba"]
 resource_name = "idle"
-length = 0.166668
+length = 0.100002
 loop_mode = 1
 step = 0.0166667
 tracks/0/type = "value"
@@ -112,10 +112,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.116667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0166667, 0.0333333, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 1]
+"values": [1, 2, 1, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -263,34 +263,34 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbg0l"]
 size = Vector2(6, 5.9375)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "ShipSprite", "Cannons")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
 z_index = 20
 motion_mode = 1
 floor_stop_on_slope = false
 script = ExtResource("1_j7bd4")
 _shipAnimator = NodePath("Ship/ShipAnimator")
 _thrustAnimator = NodePath("Thrust/ThrustAnimator")
-RedShipSprites = ExtResource("2_7xrq2")
-BlueShipSprites = ExtResource("3_dsju8")
-ShipSprite = NodePath("Ship")
-Cannons = NodePath("BulletManager")
+_redShipSprites = ExtResource("2_7xrq2")
+_blueShipSprites = ExtResource("3_dsju8")
+_shipSprite = NodePath("Ship")
+_cannons = NodePath("Cannons")
 
-[node name="BulletManager" type="Node2D" parent="." node_paths=PackedStringArray("Animator")]
+[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("Animator")]
 script = ExtResource("5_v7x07")
 BulletPackage = ExtResource("5_8a6in")
 Animator = NodePath("AnimationPlayer")
 
-[node name="Burst2" type="Sprite2D" parent="BulletManager"]
+[node name="Burst2" type="Sprite2D" parent="Cannons"]
 position = Vector2(8, -10)
 texture = ExtResource("7_17mhn")
 hframes = 4
 
-[node name="Burst1" type="Sprite2D" parent="BulletManager"]
+[node name="Burst1" type="Sprite2D" parent="Cannons"]
 position = Vector2(-8, -10)
 texture = ExtResource("7_17mhn")
 hframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BulletManager"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cannons"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_8aqx7")
@@ -302,7 +302,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_03ebw")
 hframes = 3
 vframes = 2
-frame = 3
 
 [node name="ThrustAnimator" type="AnimationPlayer" parent="Thrust"]
 playback_speed = 0.5

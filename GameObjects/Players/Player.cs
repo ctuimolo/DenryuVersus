@@ -4,86 +4,25 @@ using World;
 
 namespace Players
 {
-	public enum PlayerColors
-    {
-		Red,
-		Blue,
-    }
-
-	public enum PlayerNumbers
-	{
-		One,
-		Two,
-	}
-
-	public struct PlayerInputs
-    {
-		public string Up;
-		public string Down;
-		public string Left;
-		public string Right;
-		public string Button1;
-		public string Button2;
-		public string Button3;
-		public string Button4;
-		public string ButtonStart;	
-    }
-
 	public partial class Player : CharacterBody2D
 	{
 
-		public static PlayerInputs PlayerOneInputMap = new PlayerInputs() 
-		{
-			Up		= "player1_up",
-			Down	= "player1_down",
-			Left	= "player1_left",
-			Right	= "player1_right",
-			Button1 = "player1_button1",
-			Button2 = "player1_button2",
-			Button3 = "player1_button3",
-			Button4 = "player1_button4",
-			ButtonStart = "player1_start"
-		};
-
-		public static PlayerInputs PlayerTwoInputMap = new PlayerInputs()
-		{
-			Up		= "player2_up",
-			Down	= "player2_down",
-			Left	= "player2_left",
-			Right	= "player2_right",
-			Button1 = "player2_button1",
-			Button2 = "player2_button2",
-			Button3 = "player2_button3",
-			Button4 = "player2_button4",
-			ButtonStart = "player2_start"
-		};
-
-		private PlayerInputs _playerInputMap;
-
-		[Export]
-		private float _shipSpeed = 180f;
+		[Export] private float _shipSpeed = 180f;
 		private Vector2 _angularVector = new Vector2(0.71f, 0.71f);
 
-		[Export]
-		private AnimationPlayer _shipAnimator;
-		[Export]
-		private AnimationPlayer _thrustAnimator;
+		[Export] private AnimationPlayer _shipAnimator;
+		[Export] private AnimationPlayer _thrustAnimator;
+
+		[Export] private Texture2D	_redShipSprites;
+		[Export] private Texture2D	_blueShipSprites;
+		[Export] private Sprite2D	_shipSprite;
+
+		[Export] private BulletManager _cannons;
+
+		private PlayerInputs _playerInputMap;
 		private WorldManager _worldManager;
 
-		[Export]
-		Texture2D RedShipSprites;
-
-		[Export]
-		Texture2D BlueShipSprites;
-
-		[Export]
-		Sprite2D ShipSprite;
-
-		[Export]
-		BulletManager Cannons;
-
 		public PlayerColors PlayerColor;
-
 		public Vector2 VelocityChange = Vector2.Zero;
 
 		// Called when the node enters the scene tree for the first time.
@@ -100,10 +39,10 @@ namespace Players
 			switch (color)
 			{
 				case PlayerColors.Red:
-					ShipSprite.Texture = RedShipSprites;
+					_shipSprite.Texture = _redShipSprites;
 					break;
 				case PlayerColors.Blue:
-					ShipSprite.Texture = BlueShipSprites;
+					_shipSprite.Texture = _blueShipSprites;
 					break;
 			}
 		}
@@ -128,7 +67,7 @@ namespace Players
 
 			if (Input.IsActionJustPressed(_playerInputMap.Button1))
             {
-				Cannons.Fire();
+				_cannons.Fire();
             }
 
 			if (Input.IsActionPressed(_playerInputMap.Right) && !Input.IsActionPressed(_playerInputMap.Left))
@@ -207,9 +146,6 @@ namespace Players
             MoveAndSlide();
         }
 
-        public override void _PhysicsProcess(double delta)
-        {
-        }
 
         public override void _Input(InputEvent @event)
 		{

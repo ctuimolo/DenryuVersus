@@ -51,7 +51,7 @@ script = ExtResource("1_nn30g")
 Animator = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.839216, 0.721569, 1)
+modulate = Color(1, 0.647059, 0.592157, 1)
 z_index = 10
 texture = ExtResource("1_0jvy8")
 hframes = 4
