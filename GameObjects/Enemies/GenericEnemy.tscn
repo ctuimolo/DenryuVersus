@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj4mgoxi6a51c"]
+[gd_scene load_steps=9 format=3 uid="uid://bj4mgoxi6a51c"]
 
 [ext_resource type="Texture2D" uid="uid://bfra8bgv2eocq" path="res://Resources/Textures/Enemies/green_bee_sheet.png" id="1_advig"]
 [ext_resource type="Script" path="res://GameObjects/Enemies/GenericEnemy.cs" id="2_vcekq"]
@@ -26,16 +26,70 @@ _data = {
 "idle": SubResource("Animation_t7dfh")
 }
 
-[node name="GenericEnemy" type="Sprite2D" node_paths=PackedStringArray("Animator")]
-position = Vector2(147, 166)
+[sub_resource type="Animation" id="Animation_gmw8w"]
+resource_name = "hit"
+length = 0.133335
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1), Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0iimu"]
+resource_name = "idle"
+length = 0.0166683
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxa2k"]
+_data = {
+"hit": SubResource("Animation_gmw8w"),
+"idle": SubResource("Animation_0iimu")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rmsy"]
+radius = 9.0
+
+[node name="GenericEnemy" type="Area2D" node_paths=PackedStringArray("Animator", "Shader")]
+script = ExtResource("2_vcekq")
+Animator = NodePath("Sprite/AnimationPlayer")
+Shader = NodePath("Sprite/Shader")
+
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_advig")
 hframes = 3
 vframes = 3
-script = ExtResource("2_vcekq")
-Animator = NodePath("AnimationPlayer")
+frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 playback_speed = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_28y4a")
 }
+
+[node name="Shader" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_oxa2k")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6rmsy")
