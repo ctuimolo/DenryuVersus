@@ -151,11 +151,14 @@ namespace Players
             }
 
 			Velocity = VelocityChange;
-            MoveAndSlide();
         }
 
+		public override void _PhysicsProcess(double delta)
+		{
+			MoveAndSlide();
+		}
 
-        public override void _Input(InputEvent @event)
+		public override void _Input(InputEvent @event)
 		{
 			base._Input(@event);
 		}

@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://daoyossy6ppcj"]
+[gd_scene load_steps=9 format=3 uid="uid://dp47jeb1pb6kg"]
 
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="1_0jvy8"]
 [ext_resource type="Script" path="res://GameObjects/Players/Bullet.cs" id="1_nn30g"]
-[ext_resource type="Script" path="res://GameObjects/Players/BulletHitbox.cs" id="2_mvheo"]
+[ext_resource type="Script" path="res://GameObjects/Dynamics/Hitbox.cs" id="2_58hch"]
 
 [sub_resource type="Animation" id="Animation_fl04k"]
 resource_name = "fired"
@@ -58,7 +58,7 @@ Hitbox = NodePath("Hitbox")
 Animator = NodePath("Hitbox/Sprite2D/AnimationPlayer")
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("2_mvheo")
+script = ExtResource("2_58hch")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
 modulate = Color(1, 0.647059, 0.592157, 1)
