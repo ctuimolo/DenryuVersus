@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq4md124cm0k4"]
+[gd_scene load_steps=6 format=3 uid="uid://dq4md124cm0k4"]
 
 [ext_resource type="Script" path="res://GameObjects/PlayerInstances/PlayerInstance.cs" id="1_sjjs2"]
 [ext_resource type="PackedScene" uid="uid://d1mk7h4kls77s" path="res://GameObjects/Players/Player.tscn" id="2_6iqvy"]
 [ext_resource type="PackedScene" uid="uid://cn1aj075ycwpw" path="res://GameObjects/Backgrounds/SpaceBackground.tscn" id="3_awehm"]
+[ext_resource type="PackedScene" uid="uid://bj4mgoxi6a51c" path="res://GameObjects/Enemies/GenericEnemy.tscn" id="4_brwfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_php18"]
 size = Vector2(1, 1)
@@ -40,3 +41,18 @@ scale = Vector2(100, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 shape = SubResource("RectangleShape2D_php18")
+
+[node name="GenericEnemy3" parent="." instance=ExtResource("4_brwfg")]
+modulate = Color(0.4, 1, 0.94902, 1)
+position = Vector2(50, 72)
+
+[node name="GenericEnemy2" parent="." instance=ExtResource("4_brwfg")]
+modulate = Color(1, 0.388235, 0.94902, 1)
+position = Vector2(117, 72)
+
+[node name="GenericEnemy" parent="." instance=ExtResource("4_brwfg")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(84, 43)
+
+[node name="GenericEnemy4" parent="." instance=ExtResource("4_brwfg")]
+position = Vector2(82, 102)
