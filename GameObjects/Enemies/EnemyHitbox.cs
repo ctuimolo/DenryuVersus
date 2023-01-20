@@ -25,8 +25,6 @@ namespace Enemies
 
 		private void TakeBullet(BulletHitbox bullet)
 		{
-			if (!bullet.Active) return;
-
 			Owner.Shader.Play("hit");
 		}
 

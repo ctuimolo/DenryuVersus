@@ -25,7 +25,6 @@ namespace Players
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			Hitbox.Active = false;
 			_queueDeactivate = false;
 
 			Hitbox.AreaEntered += Area2DEntered;
@@ -35,7 +34,7 @@ namespace Players
 		{
 			_queueDeactivate = false;
 			Visible = true;
-			Hitbox.Active	= true;
+			Hitbox.ProcessMode = ProcessModeEnum.Always;
 			Animator.Stop();
 			Animator.Play("fired");
 			Position = fireFrom;
@@ -45,7 +44,7 @@ namespace Players
         {
 			Velocity = Vector2.Zero;
 			Visible = false;
-			Hitbox.Active = false;
+			Hitbox.ProcessMode = ProcessModeEnum.Disabled;
 			Animator.Stop();
         }
 
@@ -59,9 +58,9 @@ namespace Players
 
 		public void Collide()
         {
-			Velocity = Vector2.Zero;
 			Animator.Play("hit");
-			Hitbox.Active = false;
+
+			Velocity = Vector2.Zero;
 			_queueDeactivate = true;
 		}
 
@@ -74,9 +73,8 @@ namespace Players
 				return;
             }
 
-			if (Hitbox.Active)
+			if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
 			{
-				//Position += new Vector2(0, -BulletSpeed);
 
 				if ( ToGlobal(Position).y < ToGlobal(Manager.OwningPlayer.Background.Position).y - Manager.OwningPlayer.Background.Size.y/2)
 				{

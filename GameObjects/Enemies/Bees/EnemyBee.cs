@@ -6,6 +6,9 @@ namespace Enemies
 {
 	public partial class EnemyBee: EnemyBase
 	{
+		[Export]
+		private EnemyHitbox Hitbox;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -13,7 +16,7 @@ namespace Enemies
 
 			Animator.CurrentAnimation = "idle";
 			Animator.Seek(GD.RandRange(0, Animator.CurrentAnimationLength), true);
-			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f); 
+			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

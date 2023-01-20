@@ -4,6 +4,9 @@
 [ext_resource type="Script" path="res://GameObjects/Players/Bullet.cs" id="1_nn30g"]
 [ext_resource type="Script" path="res://GameObjects/Players/BulletHitbox.cs" id="2_mff30"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfan7"]
+size = Vector2(4, 7.5)
+
 [sub_resource type="Animation" id="Animation_fl04k"]
 resource_name = "fired"
 length = 0.0166683
@@ -44,39 +47,37 @@ _data = {
 "hit": SubResource("Animation_lxmj0")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfan7"]
-size = Vector2(4, 7.5)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpbj"]
 radius = 1.0
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Animator")]
+disable_mode = 2
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_nn30g")
 Hitbox = NodePath("Hitbox")
-Animator = NodePath("Hitbox/Sprite2D/AnimationPlayer")
+Animator = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Owner")]
 script = ExtResource("2_mff30")
 Owner = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+z_index = 100
+position = Vector2(0, -5.25)
+shape = SubResource("RectangleShape2D_jfan7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.647059, 0.592157, 1)
 z_index = 10
 texture = ExtResource("1_0jvy8")
 hframes = 4
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Hitbox/Sprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_h5kk8")
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-z_index = 100
-position = Vector2(0, -5.25)
-shape = SubResource("RectangleShape2D_jfan7")
 
 [node name="PhysicsBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_slpbj")

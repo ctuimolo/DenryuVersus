@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1mk7h4kls77s"]
+[gd_scene load_steps=24 format=3 uid="uid://d1mk7h4kls77s"]
 
 [ext_resource type="Script" path="res://GameObjects/Players/Player.cs" id="1_j7bd4"]
 [ext_resource type="Texture2D" uid="uid://dorsdtk3bn6ls" path="res://Resources/Textures/Ships/red_ship.png" id="2_7xrq2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dp47jeb1pb6kg" path="res://GameObjects/Players/Bullet.tscn" id="5_8a6in"]
 [ext_resource type="Script" path="res://GameObjects/Players/BulletManager.cs" id="5_v7x07"]
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="7_17mhn"]
+[ext_resource type="Script" path="res://GameObjects/Dynamics/Hitbox.cs" id="8_xyxkx"]
 
 [sub_resource type="Animation" id="Animation_b21xg"]
 resource_name = "fire"
@@ -263,6 +264,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_01w4b"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_31gqk"]
+radius = 12.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
 z_index = 20
 collision_layer = 2
@@ -324,6 +328,14 @@ libraries = {
 "": SubResource("AnimationLibrary_xo1d3")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsBody" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_01w4b")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Owner")]
+script = ExtResource("8_xyxkx")
+Owner = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_31gqk")
+debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)

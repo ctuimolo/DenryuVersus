@@ -7,9 +7,6 @@ namespace Dynamics
 		[Export]
 		public Node2D Owner;
 
-		[Export]
-		public bool Active = true;
-		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
