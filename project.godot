@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="DenryuVersus"
 
+[editor]
+
+export/convert_text_resources_to_binary=true
+
 [input]
 
 zoom_in={

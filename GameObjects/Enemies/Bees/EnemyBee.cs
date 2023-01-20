@@ -28,16 +28,16 @@ namespace Enemies
 		}
 
 		public override void TakeDamage(int damage)
-        {
+		{
 			Health -= damage;
 			
-			if(Health <= 0)
-            {
-				QueueDeath = true;
-				Shader.Play("idle");
-				Animator.Play("die");
-				Velocity = Vector2.Zero;
-            }
-        }
+			//if(Health <= 0)
+			//{
+			//	QueueDeath = true;
+			//	Shader.Play("idle");
+			//	Animator.Play("die");
+			//	Velocity = Vector2.Zero;
+			//}
+		}
 	}
 }

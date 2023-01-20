@@ -1,6 +1,6 @@
 using Godot;
 
-using Globals;
+using World;
 using Backgrounds;
 using Enemies;
 
@@ -21,11 +21,14 @@ namespace Players
 		public BulletManager Manager;
 		
 		private bool _queueDeactivate;
+		private WorldManager _worldManager;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			_queueDeactivate = false;
+            _worldManager = GetTree().Root.GetNode<WorldManager>("WorldManager");
+
+            _queueDeactivate = false;
 
 			Hitbox.AreaEntered += Area2DEntered;
 		}
@@ -35,32 +38,31 @@ namespace Players
 			_queueDeactivate = false;
 			Visible = true;
 			Hitbox.ProcessMode = ProcessModeEnum.Always;
-			Animator.Stop();
 			Animator.Play("fired");
 			Position = fireFrom;
 		}
 
 		public void Deactivate()
-        {
+		{
 			Velocity = Vector2.Zero;
 			Visible = false;
 			Hitbox.ProcessMode = ProcessModeEnum.Disabled;
-			Animator.Stop();
-        }
+			_worldManager.RemoveChild(this);
+		}
 
 		public void Area2DEntered(Area2D other)
 		{
 			if (other is EnemyHitbox)
-            {
+			{
 				if (((EnemyHitbox)other).Parent.Alive)
-                {
+				{
 					Collide();
 				}
 			}
-        }
+		}
 
 		public void Collide()
-        {
+		{
 			Animator.Play("hit");
 
 			Velocity = Vector2.Zero;
@@ -71,15 +73,15 @@ namespace Players
 		public override void _Process(double delta)
 		{
 			if(_queueDeactivate && !Animator.IsPlaying())
-            {
+			{
 				Deactivate();
 				return;
-            }
+			}
 
 			if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
 			{
 
-				if ( ToGlobal(Position).y < ToGlobal(Manager.OwningPlayer.Background.Position).y - Manager.OwningPlayer.Background.Size.y/2)
+				if ( ToGlobal(Position).y < ToGlobal(Manager.OwningPlayer.Background.Position).y - Manager.OwningPlayer.Background.Size.y/2 - 32)
 				{
 					Deactivate();
 				}
@@ -88,10 +90,10 @@ namespace Players
 			}
 		}
 
-        public override void _PhysicsProcess(double delta)
-        {
+		public override void _PhysicsProcess(double delta)
+		{
 			if(!_queueDeactivate)
-            {
+			{
 				MoveAndSlide();
 			}
 		}
