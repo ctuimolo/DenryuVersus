@@ -52,8 +52,11 @@ namespace Players
 		{
 			if (other is EnemyHitbox)
             {
-				Collide();
-            }
+				if (((EnemyHitbox)other).Parent.Alive)
+                {
+					Collide();
+				}
+			}
         }
 
 		public void Collide()
@@ -87,7 +90,10 @@ namespace Players
 
         public override void _PhysicsProcess(double delta)
         {
-			MoveAndSlide();
+			if(!_queueDeactivate)
+            {
+				MoveAndSlide();
+			}
 		}
 	}
 }

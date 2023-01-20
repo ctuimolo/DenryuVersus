@@ -17,11 +17,27 @@ namespace Enemies
 			Animator.CurrentAnimation = "idle";
 			Animator.Seek(GD.RandRange(0, Animator.CurrentAnimationLength), true);
 			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f);
+
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
+			base._Process(delta);
+			//Velocity = new Vector2(Utils.RandomFloat(-200, 200), Utils.RandomFloat(-200, 200));
 		}
+
+		public override void TakeDamage(int damage)
+        {
+			Health -= damage;
+			
+			if(Health <= 0)
+            {
+				QueueDeath = true;
+				Shader.Play("idle");
+				Animator.Play("die");
+				Velocity = Vector2.Zero;
+            }
+        }
 	}
 }

@@ -4,10 +4,10 @@ using Players;
 
 namespace Enemies
 {
-	public partial class EnemyHitbox : Area2D
+	public  partial class EnemyHitbox : Area2D
 	{
 		[Export]
-		public EnemyBase Owner;
+		public EnemyBase Parent;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -17,7 +17,7 @@ namespace Enemies
 
 		public void Area2DEntered(Area2D other)
 		{
-			if (other is BulletHitbox)
+			if (other is BulletHitbox && Parent.Alive)
 			{
 				TakeBullet(other as BulletHitbox);
 			}
@@ -25,7 +25,8 @@ namespace Enemies
 
 		private void TakeBullet(BulletHitbox bullet)
 		{
-			Owner.Shader.Play("hit");
+			Parent.Shader.Play("hit");
+			Parent.TakeDamage(bullet.Damage);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -7,6 +7,6 @@ namespace Players
 	public partial class BulletHitbox : Hitbox
 	{
 		[Export]
-		int Damage = 10;
+		public int Damage = 10;
 	}
 }
