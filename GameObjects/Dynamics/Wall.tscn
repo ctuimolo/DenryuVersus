@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh4rjauhil3s6"]
+
+[ext_resource type="Script" path="res://GameObjects/Dynamics/Wall.cs" id="1_fnmp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_php18"]
+size = Vector2(1, 1)
+
+[node name="Wall2" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_fnmp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_php18")

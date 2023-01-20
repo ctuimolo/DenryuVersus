@@ -1,5 +1,6 @@
 using Godot;
 
+using Globals;
 using Backgrounds;
 using Enemies;
 
@@ -50,7 +51,7 @@ namespace Players
 
 		public void Area2DEntered(Area2D other)
 		{
-			if (other is EnemyBase)
+			if (other is EnemyHitbox)
             {
 				Collide();
             }

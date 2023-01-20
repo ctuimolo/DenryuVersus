@@ -146,6 +146,14 @@ player2_start={
 "events": []
 }
 
+[layer_names]
+
+2d_physics/layer_1="Static Walls"
+2d_physics/layer_2="Players"
+2d_physics/layer_3="Bullets"
+2d_physics/layer_4="Enemies"
+2d_physics/layer_5="Misc."
+
 [physics]
 
 2d/default_gravity=0.0

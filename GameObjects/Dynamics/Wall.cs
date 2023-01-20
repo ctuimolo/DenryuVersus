@@ -2,19 +2,10 @@ using Godot;
 
 using Globals;
 
-namespace Enemies
+namespace Dynamics
 {
-	public partial class EnemyBase : CharacterBody2D
+	public partial class Wall : StaticBody2D
 	{
-		[Export]
-		public AnimationPlayer Animator;
-
-		[Export]
-		public AnimationPlayer Shader;
-
-		[Export]
-		public int Health = 20;
-
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{

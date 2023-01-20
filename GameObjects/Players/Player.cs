@@ -1,5 +1,6 @@
 using Godot;
 
+using Globals;
 using Backgrounds;
 using World;
 

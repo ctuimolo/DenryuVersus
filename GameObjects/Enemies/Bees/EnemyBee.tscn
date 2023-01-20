@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://j0gpddyaeojq"]
+[gd_scene load_steps=11 format=3 uid="uid://j0gpddyaeojq"]
 
 [ext_resource type="Script" path="res://GameObjects/Enemies/Bees/EnemyBee.cs" id="1_ambfj"]
 [ext_resource type="Texture2D" uid="uid://bfra8bgv2eocq" path="res://Resources/Textures/Enemies/green_bee_sheet.png" id="2_orrqi"]
+[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyHitbox.cs" id="3_mpen5"]
 
 [sub_resource type="Animation" id="Animation_t7dfh"]
 resource_name = "idle"
@@ -69,7 +70,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rmsy"]
 radius = 9.0
 
-[node name="GenericEnemy" type="Area2D" node_paths=PackedStringArray("Animator", "Shader")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xr5ix"]
+radius = 9.0
+
+[node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Animator", "Shader")]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_ambfj")
 Animator = NodePath("Sprite/AnimationPlayer")
 Shader = NodePath("Sprite/Shader")
@@ -90,5 +96,14 @@ libraries = {
 "": SubResource("AnimationLibrary_oxa2k")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Owner")]
+script = ExtResource("3_mpen5")
+Owner = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_6rmsy")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_xr5ix")
+debug_color = Color(0.568627, 0.4, 0.980392, 0.419608)
