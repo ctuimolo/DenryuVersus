@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+using Utilities;
 
 namespace Backgrounds
 {
@@ -29,7 +30,7 @@ namespace Backgrounds
 			{
 				Star newStar = StarPackage.Instantiate<Star>();
 
-				newStar.Position = new Vector2((float)GD.RandRange(0, Size.x), (float)GD.RandRange(0, Size.y));
+				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.x), Utils.RandomFloat(0, Size.y));
 
 				_stars.Add(newStar);
 				AddChild(newStar);
@@ -40,7 +41,7 @@ namespace Backgrounds
 				Star newStar = StarPackage.Instantiate<Star>();
 
 				newStar.Slow = true;
-				newStar.Position = new Vector2((float)GD.RandRange(0, Size.x), (float)GD.RandRange(0, Size.y));
+				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.x), Utils.RandomFloat(0, Size.y));
 				_slowStars.Add(newStar);
 				AddChild(newStar);
 			}

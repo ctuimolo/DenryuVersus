@@ -8,24 +8,23 @@ namespace Players
 	public partial class Bullet : CharacterBody2D
 	{
 		[Export]
-		Area2D Hitbox;
+		BulletHitbox Hitbox;
 
 		[Export]
 		public AnimationPlayer Animator;
 
 		[Export]
-		public float BulletSpeed = 600;
-		public bool Active = false;
+		public float BulletSpeed = 650;
+
 		public SpaceBackground Background;
-
 		public BulletManager Manager;
-
+		
 		private bool _queueDeactivate;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			Active = false;
+			Hitbox.Active = false;
 			_queueDeactivate = false;
 
 			Hitbox.AreaEntered += Area2DEntered;
@@ -35,7 +34,7 @@ namespace Players
 		{
 			_queueDeactivate = false;
 			Visible = true;
-			Active	= true;
+			Hitbox.Active	= true;
 			Animator.Stop();
 			Animator.Play("fired");
 			Position = fireFrom;
@@ -45,13 +44,13 @@ namespace Players
         {
 			Velocity = Vector2.Zero;
 			Visible = false;
-			Active = false;
+			Hitbox.Active = false;
 			Animator.Stop();
         }
 
 		public void Area2DEntered(Area2D other)
 		{
-			if (other is GenericEnemy)
+			if (other is EnemyBase)
             {
 				Collide();
             }
@@ -61,7 +60,7 @@ namespace Players
         {
 			Velocity = Vector2.Zero;
 			Animator.Play("hit");
-			Active = false;
+			Hitbox.Active = false;
 			_queueDeactivate = true;
 		}
 
@@ -74,7 +73,7 @@ namespace Players
 				return;
             }
 
-			if (Active)
+			if (Hitbox.Active)
 			{
 				//Position += new Vector2(0, -BulletSpeed);
 

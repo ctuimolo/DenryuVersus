@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq4md124cm0k4"]
+[gd_scene load_steps=6 format=3 uid="uid://bji5uy8etmu8b"]
 
 [ext_resource type="Script" path="res://GameObjects/PlayerInstances/PlayerInstance.cs" id="1_sjjs2"]
 [ext_resource type="PackedScene" uid="uid://d1mk7h4kls77s" path="res://GameObjects/Players/Player.tscn" id="2_6iqvy"]
 [ext_resource type="PackedScene" uid="uid://cn1aj075ycwpw" path="res://GameObjects/Backgrounds/SpaceBackground.tscn" id="3_awehm"]
-[ext_resource type="PackedScene" uid="uid://bj4mgoxi6a51c" path="res://GameObjects/Enemies/GenericEnemy.tscn" id="4_brwfg"]
+[ext_resource type="PackedScene" uid="uid://c4l3sibdhnmu5" path="res://GameObjects/Enemies/EnemyBee.tscn" id="4_brwfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_php18"]
 size = Vector2(1, 1)

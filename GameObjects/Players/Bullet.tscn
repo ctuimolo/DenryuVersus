@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="1_0jvy8"]
 [ext_resource type="Script" path="res://GameObjects/Players/Bullet.cs" id="1_nn30g"]
-[ext_resource type="Script" path="res://GameObjects/Dynamics/Hitbox.cs" id="2_58hch"]
+[ext_resource type="Script" path="res://GameObjects/Players/BulletHitbox.cs" id="2_mff30"]
 
 [sub_resource type="Animation" id="Animation_fl04k"]
 resource_name = "fired"
@@ -44,8 +44,8 @@ _data = {
 "hit": SubResource("Animation_lxmj0")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lq6l6"]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfan7"]
+size = Vector2(4, 7.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpbj"]
 radius = 1.0
@@ -57,8 +57,9 @@ script = ExtResource("1_nn30g")
 Hitbox = NodePath("Hitbox")
 Animator = NodePath("Hitbox/Sprite2D/AnimationPlayer")
 
-[node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("2_58hch")
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Owner")]
+script = ExtResource("2_mff30")
+Owner = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
 modulate = Color(1, 0.647059, 0.592157, 1)
@@ -74,8 +75,8 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 z_index = 100
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_lq6l6")
+position = Vector2(0, -5.25)
+shape = SubResource("RectangleShape2D_jfan7")
 
 [node name="PhysicsBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_slpbj")
