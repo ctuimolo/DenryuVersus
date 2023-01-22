@@ -1,6 +1,7 @@
 using Godot;
 
 using Utilities;
+using Particles;
 
 namespace Enemies
 {
@@ -8,6 +9,11 @@ namespace Enemies
 	{
 		[Export]
 		private EnemyHitbox Hitbox;
+
+		[Export]
+		private Explosion Explosion;
+
+		private bool _dieAfterAnimation = false;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -18,26 +24,33 @@ namespace Enemies
 			Animator.Seek(GD.RandRange(0, Animator.CurrentAnimationLength), true);
 			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f);
 
+			Explosion.Visible = false;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
 			base._Process(delta);
-			//Velocity = new Vector2(Utils.RandomFloat(-200, 200), Utils.RandomFloat(-200, 200));
+
+			if (_dieAfterAnimation && !Animator.IsPlaying())
+            {
+				QueueDeath = true;
+            }
 		}
 
 		public override void TakeDamage(int damage)
 		{
 			Health -= damage;
-			
-			//if(Health <= 0)
-			//{
-			//	QueueDeath = true;
-			//	Shader.Play("idle");
-			//	Animator.Play("die");
-			//	Velocity = Vector2.Zero;
-			//}
-		}
+
+            if (Health <= 0)
+            {
+                _dieAfterAnimation = true;
+                Shader.Play("idle");
+                Animator.Play("die");
+                Velocity = Vector2.Zero;
+				Explosion.Visible = true;
+				Explosion.Animator.Play("idle");
+            }
+        }
 	}
 }
