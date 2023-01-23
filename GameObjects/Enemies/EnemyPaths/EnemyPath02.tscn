@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxbv3x607pyoj"]
+
+[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath.cs" id="1_or13q"]
+[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPathFollow.cs" id="2_xj1th"]
+
+[sub_resource type="Curve2D" id="Curve2D_2ohwt"]
+bake_interval = 185.7
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -98.1257, -352, 0, 0, 0, 0, -179.713, -110, 0, 0, 0, 0, -318.633, -26, 0, 0, 0, 0, -547.96, -28, 0, 0, 0, 0, -700.11, -91, 0, 0, 0, 0, -778.39, -178, 0, 0, 0, 0, -811.466, -295)
+}
+point_count = 7
+
+[node name="EnemyPath" type="Path2D" node_paths=PackedStringArray("Path")]
+position = Vector2(104, 179)
+scale = Vector2(0.907, 1)
+curve = SubResource("Curve2D_2ohwt")
+script = ExtResource("1_or13q")
+Path = NodePath("EnemyPathFollow")
+
+[node name="EnemyPathFollow" type="PathFollow2D" parent="."]
+position = Vector2(-98.1257, -352)
+rotates = false
+loop = false
+script = ExtResource("2_xj1th")

@@ -1,10 +1,15 @@
 using Godot;
 using System.Collections.Generic;
 
+using PlayerInstances;
+
 namespace Enemies
 {
 	public partial class PathedEnemySpawner : Node2D
 	{
+		[Export]
+		PlayerInstance PlayerInstance;
+
 		[Export]
 		public PackedScene PathPackage;
 
@@ -12,11 +17,14 @@ namespace Enemies
 		public PackedScene EnemyPackage;
 
 		[Export]
-		public int EnemyCount = 5;
+		public int EnemyCount = 4;
 
 		[Export]
 		public int EnemySeparation = 100;
 		private int _enemySeparationTimer = 100;
+
+		[Export]
+		public float Speed = 0.5f;
 
 		public List<EnemyBase> Enemies = new List<EnemyBase>();
 		public List<EnemyPath> Paths = new List<EnemyPath>();
@@ -33,6 +41,7 @@ namespace Enemies
 
                 AddChild(Paths[i]);
                 Paths[i].Path.AddChild(Enemies[i]);
+				Paths[i].Path.SetSpeed(Speed);
             }
 
 			ResetEnemies();

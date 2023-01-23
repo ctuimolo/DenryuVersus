@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckgttgsg0yayl"]
+[gd_scene load_steps=4 format=3 uid="uid://b2xcb0idnr6i5"]
 
 [ext_resource type="Script" path="res://GameObjects/Enemies/PathedEnemySpawner.cs" id="1_of3lt"]
+[ext_resource type="PackedScene" uid="uid://hf8rmuu2j4bq" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath01.tscn" id="2_5x05h"]
 [ext_resource type="PackedScene" uid="uid://j0gpddyaeojq" path="res://GameObjects/Enemies/Bees/EnemyBee.tscn" id="2_wq071"]
-[ext_resource type="PackedScene" uid="uid://hf8rmuu2j4bq" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath.tscn" id="2_y7i41"]
 
 [node name="PathedEnemySpawner" type="Node2D"]
 script = ExtResource("1_of3lt")
-PathPackage = ExtResource("2_y7i41")
+PathPackage = ExtResource("2_5x05h")
 EnemyPackage = ExtResource("2_wq071")

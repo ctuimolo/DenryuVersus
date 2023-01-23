@@ -6,7 +6,7 @@ namespace Enemies
 	public partial class EnemyPathFollow : PathFollow2D
 	{
 		[Export]
-		public float Speed = 0.5f;
+		private float Speed;
 
 		[Export]
 		public float MaxSpeed = 200;
@@ -28,6 +28,12 @@ namespace Enemies
 			ProgressRatio = 0;
 			_currentSpeed = Speed;
 		}
+
+		public void SetSpeed(float speed)
+        {
+			_currentSpeed = speed;
+			Speed = speed;
+        }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)

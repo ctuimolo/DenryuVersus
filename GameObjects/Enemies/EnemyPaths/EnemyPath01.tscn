@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hf8rmuu2j4bq"]
 
-[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath.cs" id="1_uesb2"]
-[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPathFollow.cs" id="2_q1s8b"]
+[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath.cs" id="1_or13q"]
+[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyPaths/EnemyPathFollow.cs" id="2_xj1th"]
 
 [sub_resource type="Curve2D" id="Curve2D_2ohwt"]
 bake_interval = 185.7
@@ -14,11 +14,11 @@ point_count = 7
 position = Vector2(104, 179)
 scale = Vector2(0.907, 1)
 curve = SubResource("Curve2D_2ohwt")
-script = ExtResource("1_uesb2")
+script = ExtResource("1_or13q")
 Path = NodePath("EnemyPathFollow")
 
 [node name="EnemyPathFollow" type="PathFollow2D" parent="."]
 position = Vector2(-111.741, -181.109)
 rotates = false
 loop = false
-script = ExtResource("2_q1s8b")
+script = ExtResource("2_xj1th")

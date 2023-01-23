@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuyif0x1qn8ct"]
+[gd_scene load_steps=8 format=3 uid="uid://cuyif0x1qn8ct"]
 
 [ext_resource type="Script" path="res://GameObjects/PlayerInstances/PlayerInstance.cs" id="1_sjjs2"]
 [ext_resource type="PackedScene" uid="uid://d1mk7h4kls77s" path="res://GameObjects/Players/Player.tscn" id="2_6iqvy"]
 [ext_resource type="PackedScene" uid="uid://cn1aj075ycwpw" path="res://GameObjects/Backgrounds/SpaceBackground.tscn" id="3_awehm"]
 [ext_resource type="PackedScene" uid="uid://dh4rjauhil3s6" path="res://GameObjects/Dynamics/Wall.tscn" id="4_jwaq1"]
-[ext_resource type="PackedScene" uid="uid://ckgttgsg0yayl" path="res://GameObjects/Enemies/PathedEnemySpawner.tscn" id="5_a8gkb"]
+[ext_resource type="PackedScene" path="res://GameObjects/Enemies/PathedEnemySpawner.tscn" id="5_a8gkb"]
+[ext_resource type="PackedScene" uid="uid://dxbv3x607pyoj" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath02.tscn" id="6_wuchb"]
+[ext_resource type="PackedScene" uid="uid://4s0l8r2wx6mh" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath03.tscn" id="7_filcs"]
 
 [node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
 script = ExtResource("1_sjjs2")
@@ -27,5 +29,18 @@ offset_bottom = 400.0
 
 [node name="Wall1" parent="." instance=ExtResource("4_jwaq1")]
 
-[node name="PathedEnemySpawner" parent="." instance=ExtResource("5_a8gkb")]
+[node name="Spawner1" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
 position = Vector2(-68, 164)
+PlayerInstance = NodePath("..")
+Speed = 0.4
+
+[node name="Spawner2" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
+position = Vector2(335, -30)
+PlayerInstance = NodePath("..")
+PathPackage = ExtResource("6_wuchb")
+EnemyCount = 5
+
+[node name="Spawner3" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
+position = Vector2(39, -52)
+PlayerInstance = NodePath("..")
+PathPackage = ExtResource("7_filcs")
