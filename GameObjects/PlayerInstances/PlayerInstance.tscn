@@ -35,12 +35,12 @@ PlayerInstance = NodePath("..")
 Speed = 0.4
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
-position = Vector2(335, -30)
+position = Vector2(366, -31)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("6_wuchb")
 EnemyCount = 5
 
 [node name="Spawner3" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
-position = Vector2(39, -52)
+position = Vector2(57, -48)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("7_filcs")

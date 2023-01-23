@@ -7,6 +7,9 @@ namespace Enemies
 	public abstract partial class EnemyBase : CharacterBody2D, IDamageable
 	{
 		[Export]
+		public Sprite2D Sprite;
+
+		[Export]
 		public AnimationPlayer Animator;
 
 		[Export]

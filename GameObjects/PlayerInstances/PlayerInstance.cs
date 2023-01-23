@@ -5,7 +5,7 @@ using Players;
 
 namespace PlayerInstances
 {
-	public partial class PlayerInstance : Node
+	public partial class PlayerInstance : Node2D
 	{
 		[Export]
 		PlayerNumbers PlayerNumber;
@@ -17,7 +17,7 @@ namespace PlayerInstances
 		PackedScene PlayerPackage;
 
 		[Export]
-		SpaceBackground Background;
+		public SpaceBackground Background;
 
 		[Export]
 		StaticBody2D NorthWall;

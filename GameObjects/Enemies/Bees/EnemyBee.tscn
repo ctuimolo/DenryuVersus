@@ -72,12 +72,13 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xr5ix"]
 radius = 9.0
 
-[node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Explosion", "Animator", "Shader")]
+[node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Explosion", "Sprite", "Animator", "Shader")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_ambfj")
 Hitbox = NodePath("Hitbox")
 Explosion = NodePath("Explosion1")
+Sprite = NodePath("Sprite")
 Animator = NodePath("Sprite/AnimationPlayer")
 Shader = NodePath("Sprite/Shader")
 
