@@ -47,11 +47,11 @@ namespace Players
 			Animator.Play("fire");
 
 			_worldManager.AddChild(_bullets[_bulletIndex]);
-			_bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-7, -6)));
+			_bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-6, -6)));
 			IncrementBulletIndex();
 
 			_worldManager.AddChild(_bullets[_bulletIndex]);
-			_bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(7, -6)));
+			_bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(6, -6)));
 			IncrementBulletIndex();
 		}
 

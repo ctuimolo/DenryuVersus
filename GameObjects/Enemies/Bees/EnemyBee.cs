@@ -15,9 +15,21 @@ namespace Enemies
 
 		private bool _dieAfterAnimation = false;
 
+		private Vector2 _velMaxPos = new Vector2(100,   30);
+		private Vector2 _velMaxNeg = new Vector2( 10, -500);
+		private int _currentHealth;
+
+		float t;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+		}
+
+        public override void MakeAlive()
+        {
+            base.MakeAlive();
+
 			Shader.Play("idle");
 
 			Animator.CurrentAnimation = "idle";
@@ -25,14 +37,15 @@ namespace Enemies
 			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f);
 
 			Explosion.Visible = false;
+			_currentHealth = Health;
 		}
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _Process(double delta)
 		{
 			base._Process(delta);
 
-			if (_dieAfterAnimation && !Animator.IsPlaying())
+			if (_dieAfterAnimation && !Animator.IsPlaying() && !Explosion.Animator.IsPlaying())
             {
 				QueueDeath = true;
             }
@@ -40,10 +53,13 @@ namespace Enemies
 
 		public override void TakeDamage(int damage)
 		{
-			Health -= damage;
+			if (!Alive || !Interactable) return;
 
-            if (Health <= 0)
+			_currentHealth -= damage;
+
+            if (_currentHealth <= 0)
             {
+				Interactable = false;
                 _dieAfterAnimation = true;
                 Shader.Play("idle");
                 Animator.Play("die");

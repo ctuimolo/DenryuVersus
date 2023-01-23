@@ -13,5 +13,13 @@ namespace Utilities
         {
 			return (float) (from + GD.RandRange(0d, 1d) * (to - from));
         }
+
+		public static Vector2 QuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float time)
+		{
+			Vector2 q0 = p0.Lerp(p1, time);
+			Vector2 q1 = p1.Lerp(p2, time);
+			Vector2 r = q0.Lerp(q1, time);
+			return r;
+		}
 	}
 }

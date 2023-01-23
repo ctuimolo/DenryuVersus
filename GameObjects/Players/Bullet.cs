@@ -54,7 +54,7 @@ namespace Players
 		{
 			if (other is EnemyHitbox)
 			{
-				if (((EnemyHitbox)other).Parent.Alive)
+				if (((EnemyHitbox)other).Parent.Interactable)
 				{
 					Collide();
 				}

@@ -8,7 +8,6 @@ namespace Players
 {
 	public partial class Player : CharacterBody2D
 	{
-
 		[Export] 
 		private float _shipSpeed = 180f;
 		private Vector2 _angularVector = new Vector2(0.71f, 0.71f);
@@ -27,6 +26,10 @@ namespace Players
 
 		[Export] 
 		private BulletManager _cannons;
+
+		[Export]
+		private int _cannonDelay = 25;
+		private int _cannonTime = 0;
 
 		private PlayerInputs _playerInputMap;
 		private WorldManager _worldManager;
@@ -74,10 +77,7 @@ namespace Players
 		{
 			VelocityChange = Vector2.Zero;
 
-			if (Input.IsActionJustPressed(_playerInputMap.Button1))
-            {
-				_cannons.Fire();
-            }
+			CheckFireInput();
 
 			if (Input.IsActionPressed(_playerInputMap.Right) && !Input.IsActionPressed(_playerInputMap.Left))
 			{
@@ -153,6 +153,20 @@ namespace Players
 
 			Velocity = VelocityChange;
         }
+
+		private void CheckFireInput()
+        {
+			if(_cannonTime > 0 )
+            {
+				_cannonTime--;
+            }
+
+			if (_cannonTime <= 0 && Input.IsActionPressed(_playerInputMap.Button1))
+			{
+				_cannonTime = _cannonDelay;
+				_cannons.Fire();
+			}
+		}
 
 		public override void _PhysicsProcess(double delta)
 		{
