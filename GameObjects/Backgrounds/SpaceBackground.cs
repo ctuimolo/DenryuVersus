@@ -21,7 +21,7 @@ namespace Backgrounds
 
 
 		[Export]
-		Vector2 StarSpeed = new Vector2(0f, 0.14f);
+		Vector2 StarSpeed = new Vector2(0f, 0.25f);
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

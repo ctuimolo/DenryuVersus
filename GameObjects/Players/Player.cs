@@ -9,7 +9,7 @@ namespace Players
 	public partial class Player : CharacterBody2D
 	{
 		[Export] 
-		private float _shipSpeed = 190f;
+		private float _shipSpeed = 160f;
 		private Vector2 _angularVector = new Vector2(0.71f, 0.71f);
 
 		[Export] 
