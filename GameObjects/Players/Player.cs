@@ -9,7 +9,7 @@ namespace Players
 	public partial class Player : CharacterBody2D
 	{
 		[Export] 
-		private float _shipSpeed = 180f;
+		private float _shipSpeed = 190f;
 		private Vector2 _angularVector = new Vector2(0.71f, 0.71f);
 
 		[Export] 
@@ -28,7 +28,7 @@ namespace Players
 		private BulletManager _cannons;
 
 		[Export]
-		private int _cannonDelay = 25;
+		private int _cannonDelay = 8;
 		private int _cannonTime = 0;
 
 		private PlayerInputs _playerInputMap;

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d1mk7h4kls77s" path="res://GameObjects/Players/Player.tscn" id="2_6iqvy"]
 [ext_resource type="PackedScene" uid="uid://cn1aj075ycwpw" path="res://GameObjects/Backgrounds/SpaceBackground.tscn" id="3_awehm"]
 [ext_resource type="PackedScene" uid="uid://dh4rjauhil3s6" path="res://GameObjects/Dynamics/Wall.tscn" id="4_jwaq1"]
-[ext_resource type="PackedScene" path="res://GameObjects/Enemies/PathedEnemySpawner.tscn" id="5_a8gkb"]
+[ext_resource type="PackedScene" uid="uid://b2xcb0idnr6i5" path="res://GameObjects/Enemies/PathedEnemySpawner.tscn" id="5_a8gkb"]
 [ext_resource type="PackedScene" uid="uid://dxbv3x607pyoj" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath02.tscn" id="6_wuchb"]
 [ext_resource type="PackedScene" uid="uid://4s0l8r2wx6mh" path="res://GameObjects/Enemies/EnemyPaths/EnemyPath03.tscn" id="7_filcs"]
 
@@ -32,15 +32,20 @@ offset_bottom = 400.0
 [node name="Spawner1" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
 position = Vector2(-68, 164)
 PlayerInstance = NodePath("..")
-Speed = 0.4
+EnemySeparation = 50
+Speed = 0.8
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
 position = Vector2(366, -31)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("6_wuchb")
 EnemyCount = 5
+EnemySeparation = 50
+Speed = 0.8
 
 [node name="Spawner3" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
 position = Vector2(57, -48)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("7_filcs")
+EnemySeparation = 50
+Speed = 1.0

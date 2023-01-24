@@ -15,7 +15,7 @@ namespace Players
 		public AnimationPlayer Animator;
 
 		[Export]
-		public float BulletSpeed = 750;
+		public float BulletSpeed = 1000;
 
 		public SpaceBackground Background;
 		public BulletManager Manager;

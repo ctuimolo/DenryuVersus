@@ -31,9 +31,9 @@ namespace Enemies
 		public override void _Process(double delta)
 		{
 			if (QueueDeath)
-            {
+      {
 				Die();
-            }
+      }
 		}
 
 		private void Die(bool queueFree = false)
