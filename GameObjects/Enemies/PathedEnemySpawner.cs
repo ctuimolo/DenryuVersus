@@ -50,7 +50,7 @@ namespace Enemies
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			//ValidateEnemiesInbound();
+			ValidateEnemiesInbound();
 			if(CheckAllEnemiesDead())
             {
 				ResetEnemies();
@@ -76,17 +76,22 @@ namespace Enemies
 			foreach (EnemyBase enemy in Enemies)
 			{
 
-				float a = ToGlobal(enemy.Position).x + 32/2;
+				float a = enemy.ToGlobal(enemy.Position).x + 32/2;
 				float b = (PlayerInstance.Position).x;
 
 
-				if (ToGlobal(enemy.Position).x + enemy.Sprite.Texture.GetSize().x/2 < ToGlobal(PlayerInstance.Background.Position).x ||
-					ToGlobal(enemy.Position).x - enemy.Sprite.Texture.GetSize().x/2 > ToGlobal(PlayerInstance.Background.Position).x + PlayerInstance.Background.Size.x ||
-					ToGlobal(enemy.Position).y + enemy.Sprite.Texture.GetSize().y/2 < ToGlobal(PlayerInstance.Background.Position).y ||
-					ToGlobal(enemy.Position).y - enemy.Sprite.Texture.GetSize().y/2 > ToGlobal(PlayerInstance.Background.Position).y + PlayerInstance.Background.Size.y)
+				if (enemy.ToGlobal(enemy.Position).x + enemy.Sprite.Texture.GetSize().x/2 < PlayerInstance.ToGlobal(PlayerInstance.Background.Position).x ||
+          enemy.ToGlobal(enemy.Position).x - enemy.Sprite.Texture.GetSize().x/2 > PlayerInstance.ToGlobal(PlayerInstance.Background.Position).x + PlayerInstance.Background.Size.x ||
+          enemy.ToGlobal(enemy.Position).y + enemy.Sprite.Texture.GetSize().y/2 < PlayerInstance.ToGlobal(PlayerInstance.Background.Position).y + PlayerInstance.Background.Size.y)
 				{
-					string test = "true?";
+					enemy.Interactable = false;
+					enemy.Visible = false;
                 }
+				else 
+				{
+          enemy.Interactable = true;
+          enemy.Visible = true;
+        }
 
             }
 		}
