@@ -5,6 +5,8 @@ namespace Enemies
 {
 	public partial class EnemyPathFollow : PathFollow2D
 	{
+		public EnemyBase Enemy { get; set; }
+
 		[Export]
 		private float Speed;
 
@@ -19,7 +21,6 @@ namespace Enemies
 
 		private float _currentSpeed;
 
-		public bool Alive = false;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -38,7 +39,7 @@ namespace Enemies
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			if (Alive)
+			if (Enemy.Alive)
 			{
 				_currentSpeed += Acceleration;
 				_currentSpeed = Mathf.Clamp(_currentSpeed, MinSpeed, MaxSpeed);

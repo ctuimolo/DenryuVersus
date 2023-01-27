@@ -74,18 +74,18 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpbj"]
 radius = 1.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Animator")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Animator", "Sprite")]
 disable_mode = 2
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_nn30g")
 Hitbox = NodePath("Hitbox")
 Animator = NodePath("Sprite2D/AnimationPlayer")
+Sprite = NodePath("Sprite2D")
 
-[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Owner")]
+[node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -8)
 script = ExtResource("2_mff30")
-Owner = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 z_index = 100

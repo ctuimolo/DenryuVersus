@@ -20,6 +20,7 @@ namespace Enemies
 
 		public bool Alive			{ get; set; } = false;
 		public bool Interactable	{ get; set; } = false;
+		public bool IsDying			{ get; set; } = false;
 		public bool QueueDeath		{ get; set; } = false;
 
 		// Called when the node enters the scene tree for the first time.
@@ -31,25 +32,27 @@ namespace Enemies
 		public override void _Process(double delta)
 		{
 			if (QueueDeath)
-      {
+			{
 				Die();
-      }
+			}
 		}
 
 		private void Die(bool queueFree = false)
         {
 			if(queueFree) QueueFree();
-			Alive = false;
-			Interactable = false;
-			ProcessMode = ProcessModeEnum.Disabled;
+			Interactable	= false;
+			Alive			= false;
+			IsDying			= false;
+			ProcessMode		= ProcessModeEnum.Disabled;
 		}
 
 		public virtual void MakeAlive()
         {
-			ProcessMode = ProcessModeEnum.Always;
-			Alive		 = true;
-			Interactable = true;
-			QueueDeath	 = false;
+			ProcessMode		= ProcessModeEnum.Always;
+			Alive			= true;
+			Interactable	= true;
+			QueueDeath		= false;
+			IsDying			= false;
         }
 
 		public override void _PhysicsProcess(double delta)

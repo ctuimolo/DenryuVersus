@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+using Utilities;
 using PlayerInstances;
 
 namespace Enemies
@@ -21,7 +22,7 @@ namespace Enemies
 
 		[Export]
 		public int EnemySeparation = 100;
-		private int _enemySeparationTimer = 100;
+		private int _enemySeparationTimer = 0;
 
 		[Export]
 		public float Speed = 0.5f;
@@ -40,6 +41,7 @@ namespace Enemies
                 Paths.Add(PathPackage.Instantiate<EnemyPath>());
 
                 AddChild(Paths[i]);
+				Paths[i].Path.Enemy = Enemies[i];
                 Paths[i].Path.AddChild(Enemies[i]);
 				Paths[i].Path.SetSpeed(Speed);
             }
@@ -50,57 +52,56 @@ namespace Enemies
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			//ValidateEnemiesInbound();
-			if(CheckAllEnemiesDead())
-            {
-				ResetEnemies();
-            }				
-			TrySpawnEnemies();
+			if (Enemies.Count > 0 && Paths.Count > 0)
+			{
+				ValidateEnemiesInbound();
+
+				if (CheckAllEnemiesDead())
+				{
+					ResetEnemies();
+				}
+
+                TrySpawnEnemies();
+            }
 		}
 
 		private void ResetEnemies()
         {
 			for (int i = 0; i < EnemyCount; i++)
 			{
-				Enemies[i].Alive = false;
 				Paths[i].Path.Progress = 0;
-				Paths[i].Path.Alive = false;
-
-				_enemyIdx = 0;
 				_enemySeparationTimer = 0;
+				_enemyIdx = 0;
 			}
 		}
 
-		//private void ValidateEnemiesInbound()
-  //      {
-		//	foreach (EnemyBase enemy in Enemies)
-		//	{
+        private void ValidateEnemiesInbound()
+        {
+			foreach (EnemyBase enemy in Enemies)
+			{
+				Vector2 enemySize = Utils.GetSpriteLiteralSize(enemy.Sprite);
 
-		//		float a = enemy.ToGlobal(enemy.Position).x + 32/2;
-		//		float b = (PlayerInstance.Position).x;
+				if (enemy.GlobalPosition.x + enemySize.x/2 < PlayerInstance.Background.GlobalPosition.x ||
+					enemy.GlobalPosition.x - enemySize.x/2 > PlayerInstance.Background.GlobalPosition.x + PlayerInstance.Background.Size.x ||
+					enemy.GlobalPosition.y + enemySize.y/2 < PlayerInstance.Background.GlobalPosition.y ||
+					enemy.GlobalPosition.y - enemySize.y/2 > PlayerInstance.Background.GlobalPosition.y + PlayerInstance.Background.Size.y)
+				{
+					enemy.Visible = false;
+					enemy.Interactable = false;
+				}
+				else
+				{
+					enemy.Visible = true;
+					enemy.Interactable = true;
+				}
+			}
+		}
 
-
-		//		if (enemy.ToGlobal(enemy.Position).x + enemy.Sprite.Texture.GetSize().x/2 < PlayerInstance.ToGlobal(PlayerInstance.Background.Position).x ||
-		//		enemy.ToGlobal(enemy.Position).x - enemy.Sprite.Texture.GetSize().x/2 > PlayerInstance.ToGlobal(PlayerInstance.Background.Position).x + PlayerInstance.Background.Size.x ||
-		//		enemy.ToGlobal(enemy.Position).y + enemy.Sprite.Texture.GetSize().y/2 < PlayerInstance.ToGlobal(PlayerInstance.Background.Position).y + PlayerInstance.Background.Size.y)
-		//		{
-		//			enemy.Interactable = false;
-		//			enemy.Visible = false;
-  //              }
-		//		else 
-		//		{
-  //        enemy.Interactable = true;
-  //        enemy.Visible = true;
-  //      }
-
-  //          }
-		//}
-
-		private bool CheckAllEnemiesDead()
+        private bool CheckAllEnemiesDead()
         {
 			foreach(EnemyBase enemy in Enemies)
             {
-				if(enemy.Alive)
+				if(enemy.Alive || enemy.IsDying)
                 {
 					return false;
                 }
@@ -112,9 +113,8 @@ namespace Enemies
         {
 			if (_enemySeparationTimer == 0)
 			{
-				if (!Paths[_enemyIdx].Path.Alive && !Enemies[_enemyIdx].Alive)
+				if (!Enemies[_enemyIdx].Alive && !Enemies[_enemyIdx].IsDying && Paths[_enemyIdx].Path.Progress == 0)
 				{
-					Paths[_enemyIdx].Path.Alive = true;
 					Enemies[_enemyIdx].MakeAlive();
 
 					_enemyIdx++;

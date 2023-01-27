@@ -17,7 +17,7 @@ namespace Enemies
 
 		public void Area2DEntered(Area2D other)
 		{
-			if (other is BulletHitbox && Parent.Alive)
+			if (other is BulletHitbox && Parent.Alive && Parent.Interactable)
 			{
 				TakeBullet(other as BulletHitbox);
 			}
@@ -25,7 +25,6 @@ namespace Enemies
 
 		private void TakeBullet(BulletHitbox bullet)
 		{
-			Parent.Shader.Play("hit");
 			Parent.TakeDamage(bullet.Damage);
 		}
 

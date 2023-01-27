@@ -1,5 +1,6 @@
 using Godot;
 
+using Utilities;
 using World;
 using Backgrounds;
 using Enemies;
@@ -13,6 +14,9 @@ namespace Players
 
 		[Export]
 		public AnimationPlayer Animator;
+
+		[Export]
+		public Sprite2D Sprite;
 
 		[Export]
 		public float BulletSpeed = 1000;
@@ -54,7 +58,7 @@ namespace Players
 		{
 			if (other is EnemyHitbox)
 			{
-				if (((EnemyHitbox)other).Parent.Interactable)
+				if (((EnemyHitbox)other).Parent.Alive && ((EnemyHitbox)other).Parent.Interactable)
 				{
 					Collide();
 				}
@@ -81,7 +85,7 @@ namespace Players
 			if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
 			{
 
-				if ( ToGlobal(Position).y < ToGlobal(Manager.OwningPlayer.Background.Position).y - Manager.OwningPlayer.Background.Size.y/2 - 32)
+				if (GlobalPosition.y < Manager.OwningPlayer.Background.GlobalPosition.y - Manager.OwningPlayer.Background.Size.y/2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).y)
 				{
 					Deactivate();
 				}

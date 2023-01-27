@@ -111,5 +111,4 @@ shape = SubResource("CircleShape2D_xr5ix")
 debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
 
 [node name="Explosion1" parent="." instance=ExtResource("6_cqke2")]
-visible = false
 position = Vector2(0, 0)

@@ -32,6 +32,7 @@ offset_bottom = 400.0
 [node name="Spawner1" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_a8gkb")]
 position = Vector2(-68, 164)
 PlayerInstance = NodePath("..")
+EnemyCount = 5
 EnemySeparation = 50
 Speed = 0.8
 
@@ -39,7 +40,6 @@ Speed = 0.8
 position = Vector2(366, -31)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("6_wuchb")
-EnemyCount = 5
 EnemySeparation = 50
 Speed = 0.8
 
@@ -47,5 +47,6 @@ Speed = 0.8
 position = Vector2(57, -48)
 PlayerInstance = NodePath("..")
 PathPackage = ExtResource("7_filcs")
+EnemyCount = 5
 EnemySeparation = 50
 Speed = 1.0

@@ -5,6 +5,7 @@
 
 [sub_resource type="Animation" id="Animation_8hrwa"]
 resource_name = "idle"
+length = 0.150002
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,7 +42,6 @@ position = Vector2(-45, 72)
 texture = ExtResource("1_dmduu")
 hframes = 3
 vframes = 2
-frame = 3
 script = ExtResource("2_bt2no")
 Animator = NodePath("AnimationPlayer")
 

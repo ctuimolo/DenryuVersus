@@ -21,5 +21,10 @@ namespace Utilities
 			Vector2 r = q0.Lerp(q1, time);
 			return r;
 		}
+
+		public static Vector2 GetSpriteLiteralSize(Sprite2D sprite)
+        {
+			return sprite.Texture.GetSize() / new Vector2(sprite.Hframes, sprite.Vframes) * sprite.Scale;
+		}
 	}
 }

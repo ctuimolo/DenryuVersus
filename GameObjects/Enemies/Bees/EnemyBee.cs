@@ -38,6 +38,7 @@ namespace Enemies
 
 			Explosion.Visible = false;
 			_currentHealth = Health;
+			_dieAfterAnimation = false;
 		}
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,14 +54,14 @@ namespace Enemies
 
 		public override void TakeDamage(int damage)
 		{
-			if (!Alive || !Interactable) return;
-
 			_currentHealth -= damage;
+			Shader.Play("hit");
 
             if (_currentHealth <= 0)
             {
-				Interactable = false;
+				Alive = false;
                 _dieAfterAnimation = true;
+				IsDying = true;
                 Shader.Play("idle");
                 Animator.Play("die");
                 Velocity = Vector2.Zero;
