@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://qefd68xku4yn" path="res://Scripts/Players/Player.tscn" id="2_b73i1"]
 [ext_resource type="PackedScene" uid="uid://deeb5q1nktge6" path="res://Scripts/Backgrounds/SpaceBackground.tscn" id="3_1vlm2"]
 [ext_resource type="PackedScene" path="res://Scripts/Dynamics/Wall.tscn" id="4_1x0cy"]
-[ext_resource type="PackedScene" uid="uid://d6vbx4gacgqm" path="res://Scripts/Enemies/Pathing/PathedEnemySpawner.tscn" id="5_w4n4x"]
-[ext_resource type="PackedScene" uid="uid://dwe15wcw63iv4" path="res://Scripts/Enemies/Bee/Paths/EnemyBee_Path01.tscn" id="6_qr114"]
-[ext_resource type="PackedScene" path="res://Scripts/Enemies/Bee/EnemyBee.tscn" id="7_i0b5a"]
+[ext_resource type="PackedScene" uid="uid://t8teaexb6aab" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.tscn" id="5_kacco"]
+[ext_resource type="PackedScene" uid="uid://c1bvk88wbndgk" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner02.tscn" id="6_by0la"]
+[ext_resource type="PackedScene" uid="uid://cx6u1roq07s67" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="7_mscfd"]
 
 [node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
 script = ExtResource("1_h4qko")
@@ -29,10 +29,11 @@ offset_bottom = 400.0
 
 [node name="Wall1" parent="." instance=ExtResource("4_1x0cy")]
 
-[node name="PathedEnemySpawner" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_w4n4x")]
+[node name="EnemyBee_Spawner01" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_kacco")]
 PlayerInstance = NodePath("..")
-PathPackage = ExtResource("6_qr114")
-EnemyPackage = ExtResource("7_i0b5a")
-EnemyCount = 5
-EnemySeparation = 60
-Speed = 0.6
+
+[node name="EnemyBee_Spawner02" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("6_by0la")]
+PlayerInstance = NodePath("..")
+
+[node name="EnemyBee_Spawner03" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("7_mscfd")]
+PlayerInstance = NodePath("..")

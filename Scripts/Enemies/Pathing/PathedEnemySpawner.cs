@@ -27,7 +27,7 @@ namespace Enemies
 		[Export]
 		public float Speed = 0.5f;
 
-		public List<EnemyBase> Enemies = new List<EnemyBase>();
+		public List<Enemy> Enemies = new List<Enemy>();
 		public List<EnemyPath> Paths = new List<EnemyPath>();
 
 		private int _enemyIdx = 0;
@@ -90,7 +90,7 @@ namespace Enemies
 
         private void ValidateEnemiesInbound()
         {
-			foreach (EnemyBase enemy in Enemies)
+			foreach (Enemy enemy in Enemies)
 			{
 				Vector2 enemySize = Utils.GetSpriteLiteralSize(enemy.Sprite);
 
@@ -112,7 +112,7 @@ namespace Enemies
 
         private bool CheckAllEnemiesDead()
         {
-			foreach(EnemyBase enemy in Enemies)
+			foreach(Enemy enemy in Enemies)
             {
 				if(enemy.Alive || enemy.IsDying)
                 {

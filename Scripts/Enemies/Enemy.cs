@@ -4,7 +4,7 @@ using Globals;
 
 namespace Enemies
 {
-	public abstract partial class EnemyBase : CharacterBody2D, IDamageable
+	public abstract partial class Enemy : CharacterBody2D, IDamageable
 	{
 		[Export]
 		public Sprite2D Sprite;

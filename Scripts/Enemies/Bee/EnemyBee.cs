@@ -5,7 +5,7 @@ using Particles;
 
 namespace Enemies
 {
-	public partial class EnemyBee: EnemyBase
+	public partial class EnemyBee: Enemy
 	{
 		[Export]
 		private EnemyHitbox Hitbox;

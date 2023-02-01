@@ -7,7 +7,7 @@ namespace Enemies
 	public  partial class EnemyHitbox : Area2D
 	{
 		[Export]
-		public EnemyBase Parent;
+		public Enemy Parent;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

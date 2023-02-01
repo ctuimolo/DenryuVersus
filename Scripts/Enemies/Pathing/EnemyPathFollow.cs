@@ -5,7 +5,7 @@ namespace Enemies
 {
 	public partial class EnemyPathFollow : PathFollow2D
 	{
-		public EnemyBase Enemy { get; set; }
+		public Enemy Enemy { get; set; }
 
 		[Export]
 		private float Speed;

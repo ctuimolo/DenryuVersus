@@ -18,6 +18,7 @@ Path = NodePath("EnemyPath/EnemyPathFollow")
 [node name="EnemyPath" type="Path2D" parent="."]
 position = Vector2(57, 453)
 scale = Vector2(1, 1.103)
+skew = 0.0174533
 curve = SubResource("Curve2D_2ohwt")
 
 [node name="EnemyPathFollow" type="PathFollow2D" parent="EnemyPath"]
