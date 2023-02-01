@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhl5onkopx0iq"
-path="res://.godot/imported/explosion2.png-6d52a31e47cafb65d7d1d2df7cc740f6.ctex"
+uid="uid://bg2oh0eggwesk"
+path="res://.godot/imported/shmup_frame.png-42d65049f7c299169c8257731b5512b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/explosion2.png"
-dest_files=["res://.godot/imported/explosion2.png-6d52a31e47cafb65d7d1d2df7cc740f6.ctex"]
+source_file="res://Aesprite/UI/shmup_frame.png"
+dest_files=["res://.godot/imported/shmup_frame.png-42d65049f7c299169c8257731b5512b3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n4glbnkqniny"
-path="res://.godot/imported/green_bee_sheet.png-c59924ce624ea76296aa2829339030fe.ctex"
+uid="uid://k33i32r6e7oo"
+path="res://.godot/imported/ship_wingsup_sheet.png-50e94b339aa7bf8d58ed8fd05e2ac26e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/green_bee_sheet.png"
-dest_files=["res://.godot/imported/green_bee_sheet.png-c59924ce624ea76296aa2829339030fe.ctex"]
+source_file="res://Aesprite/Players/ship_wingsup_sheet.png"
+dest_files=["res://.godot/imported/ship_wingsup_sheet.png-50e94b339aa7bf8d58ed8fd05e2ac26e.ctex"]
 
 [params]
 

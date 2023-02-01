@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k33i32r6e7oo"
-path="res://.godot/imported/ship_wingsup_sheet.png-f4415796830844c02e5efb635eef4a3b.ctex"
+uid="uid://bqnmg5lbmia7y"
+path="res://.godot/imported/bullet-Sheet.png-cb73e0277f6d75034c3e460eeefbd07f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/ship_wingsup_sheet.png"
-dest_files=["res://.godot/imported/ship_wingsup_sheet.png-f4415796830844c02e5efb635eef4a3b.ctex"]
+source_file="res://Aesprite/Particles/bullet-Sheet.png"
+dest_files=["res://.godot/imported/bullet-Sheet.png-cb73e0277f6d75034c3e460eeefbd07f.ctex"]
 
 [params]
 

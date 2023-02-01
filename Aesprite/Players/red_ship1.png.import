@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg2oh0eggwesk"
-path="res://.godot/imported/shmup_frame.png-cd5022f4ec544c32a749e376af8e0ec9.ctex"
+uid="uid://cto6oig3rpqb8"
+path="res://.godot/imported/red_ship1.png-5882d656429f970892af81c211706daa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/shmup_frame.png"
-dest_files=["res://.godot/imported/shmup_frame.png-cd5022f4ec544c32a749e376af8e0ec9.ctex"]
+source_file="res://Aesprite/Players/red_ship1.png"
+dest_files=["res://.godot/imported/red_ship1.png-5882d656429f970892af81c211706daa.ctex"]
 
 [params]
 

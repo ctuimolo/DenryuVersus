@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cto6oig3rpqb8"
-path="res://.godot/imported/red_ship1.png-016427bc2e7b3d5f2d9c215ddc4a2d29.ctex"
+uid="uid://blogokrwq0kli"
+path="res://.godot/imported/icon.svg-eb769d2e367183ac015c2708bfb6f96e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/red_ship1.png"
-dest_files=["res://.godot/imported/red_ship1.png-016427bc2e7b3d5f2d9c215ddc4a2d29.ctex"]
+source_file="res://Aesprite/UI/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-eb769d2e367183ac015c2708bfb6f96e.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

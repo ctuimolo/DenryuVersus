@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdfq0lx84sdhr"
-path="res://.godot/imported/blue_ship.png-169410d714ddcc825be49a96c0f9a10a.ctex"
+path="res://.godot/imported/blue_ship.png-3e889883bfe7ced24901c37b090ce1c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Aesprite/blue_ship.png"
-dest_files=["res://.godot/imported/blue_ship.png-169410d714ddcc825be49a96c0f9a10a.ctex"]
+source_file="res://Aesprite/Enemies/blue_ship.png"
+dest_files=["res://.godot/imported/blue_ship.png-3e889883bfe7ced24901c37b090ce1c5.ctex"]
 
 [params]
 
