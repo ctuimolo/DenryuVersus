@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw5o4pk7878ia"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Pathing/EnemyPath.cs" id="1_b7ak1"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Pathing/EnemyPathFollow.cs" id="2_eccof"]
+[ext_resource type="Script" path="res://Scripts/Globals/MakeInvisible.cs" id="3_kab1i"]
+
+[sub_resource type="Curve2D" id="Curve2D_2ohwt"]
+bake_interval = 185.7
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -16, -443.336, 0, 0, 0, 0, 3, -386.219, 0, 0, 0, 0, -14, -330.916, 0, 0, 0, 0, 7, -284.678, 0, 0, 0, 0, -10, -227.561, 0, 0, 0, 0, 9, -167.724, 0, 0, 0, 0, -5, -110.607, 0, 0, 0, 0, 7, -48.0508, 0, 0, 0, 0, -9, 2.71985)
+}
+point_count = 9
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Path")]
+script = ExtResource("1_b7ak1")
+Path = NodePath("EnemyPath/EnemyPathFollow")
+
+[node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2(57, 453)
+scale = Vector2(1, 1.103)
+curve = SubResource("Curve2D_2ohwt")
+
+[node name="EnemyPathFollow" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(-16, -443.336)
+rotates = false
+loop = false
+script = ExtResource("2_eccof")
+
+[node name="312x400" type="ColorRect" parent="."]
+show_behind_parent = true
+offset_right = 312.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_kab1i")

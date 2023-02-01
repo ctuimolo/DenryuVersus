@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://14ly1pc35rq6"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://GameObjects/Backgrounds/Star.cs" id="1_safqn"]
+[ext_resource type="Script" path="res://Scripts/Backgrounds/Star.cs" id="1_safqn"]
 
 [sub_resource type="Animation" id="Animation_wxhe8"]
 resource_name = "slow twinkle"

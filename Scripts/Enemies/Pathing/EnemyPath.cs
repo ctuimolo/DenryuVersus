@@ -3,7 +3,7 @@ using System;
 
 namespace Enemies
 {
-	public partial class EnemyPath : Path2D
+	public partial class EnemyPath : Node2D
 	{
 		[Export]
 		public EnemyPathFollow Path;

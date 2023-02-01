@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-WorldManager="*res://GameObjects/Globals/WorldManager.cs"
+WorldManager="*res://Scripts/Globals/WorldManager.cs"
 
 [display]
 

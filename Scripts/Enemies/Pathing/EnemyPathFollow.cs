@@ -46,10 +46,10 @@ namespace Enemies
 
 				Progress += _currentSpeed;
 
-				if(ProgressRatio >= 1)
-                {
-					Progress = 0;
-                }
+				//if(ProgressRatio >= 1)
+				//{
+				//	Progress = 0;
+				//}
 			}
         }
 	}

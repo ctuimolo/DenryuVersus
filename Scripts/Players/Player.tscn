@@ -1,13 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1mk7h4kls77s"]
+[gd_scene load_steps=24 format=3 uid="uid://qefd68xku4yn"]
 
-[ext_resource type="Script" path="res://GameObjects/Players/Player.cs" id="1_j7bd4"]
-[ext_resource type="Texture2D" uid="uid://dorsdtk3bn6ls" path="res://Resources/Textures/Ships/red_ship.png" id="2_7xrq2"]
-[ext_resource type="Texture2D" uid="uid://ynbska68vi48" path="res://Resources/Textures/Ships/blue_ship.png" id="3_dsju8"]
-[ext_resource type="Texture2D" uid="uid://diw6e5hgggdx3" path="res://Resources/Textures/Ships/thrust-Sheet.png" id="4_03ebw"]
-[ext_resource type="PackedScene" uid="uid://dp47jeb1pb6kg" path="res://GameObjects/Players/Bullet.tscn" id="5_8a6in"]
-[ext_resource type="Script" path="res://GameObjects/Players/BulletManager.cs" id="5_v7x07"]
-[ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="7_17mhn"]
-[ext_resource type="Script" path="res://GameObjects/Dynamics/Hitbox.cs" id="8_xyxkx"]
+[ext_resource type="Script" path="res://Scripts/Players/Player.cs" id="1_aycex"]
+[ext_resource type="Texture2D" uid="uid://dorsdtk3bn6ls" path="res://Resources/Textures/Ships/red_ship.png" id="2_xtx2c"]
+[ext_resource type="Texture2D" uid="uid://ynbska68vi48" path="res://Resources/Textures/Ships/blue_ship.png" id="3_udx2c"]
+[ext_resource type="Script" path="res://Scripts/Players/BulletManager.cs" id="4_xapqo"]
+[ext_resource type="PackedScene" uid="uid://cex0cfhv7m8fw" path="res://Scripts/Players/Bullet.tscn" id="5_4shsa"]
+[ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="6_45qk6"]
+[ext_resource type="Texture2D" uid="uid://diw6e5hgggdx3" path="res://Resources/Textures/Ships/thrust-Sheet.png" id="7_1va5l"]
+[ext_resource type="Script" path="res://Scripts/Dynamics/Hitbox.cs" id="8_a6ttp"]
 
 [sub_resource type="Animation" id="Animation_b21xg"]
 resource_name = "fire"
@@ -272,28 +272,28 @@ z_index = 20
 collision_layer = 2
 motion_mode = 1
 floor_stop_on_slope = false
-script = ExtResource("1_j7bd4")
+script = ExtResource("1_aycex")
 _shipAnimator = NodePath("Ship/ShipAnimator")
 _thrustAnimator = NodePath("Thrust/ThrustAnimator")
-_redShipSprites = ExtResource("2_7xrq2")
-_blueShipSprites = ExtResource("3_dsju8")
+_redShipSprites = ExtResource("2_xtx2c")
+_blueShipSprites = ExtResource("3_udx2c")
 _shipSprite = NodePath("Ship")
 _cannons = NodePath("Cannons")
 
 [node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("OwningPlayer", "Animator")]
-script = ExtResource("5_v7x07")
-BulletPackage = ExtResource("5_8a6in")
+script = ExtResource("4_xapqo")
+BulletPackage = ExtResource("5_4shsa")
 OwningPlayer = NodePath("..")
 Animator = NodePath("AnimationPlayer")
 
 [node name="Burst2" type="Sprite2D" parent="Cannons"]
 position = Vector2(8, -10)
-texture = ExtResource("7_17mhn")
+texture = ExtResource("6_45qk6")
 hframes = 4
 
 [node name="Burst1" type="Sprite2D" parent="Cannons"]
 position = Vector2(-8, -10)
-texture = ExtResource("7_17mhn")
+texture = ExtResource("6_45qk6")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cannons"]
@@ -305,7 +305,7 @@ libraries = {
 [node name="Thrust" type="Sprite2D" parent="."]
 position = Vector2(0, 10)
 scale = Vector2(2, 2)
-texture = ExtResource("4_03ebw")
+texture = ExtResource("7_1va5l")
 hframes = 3
 vframes = 2
 frame = 3
@@ -318,7 +318,7 @@ libraries = {
 
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_7xrq2")
+texture = ExtResource("2_xtx2c")
 hframes = 3
 vframes = 2
 metadata/_edit_lock_ = true
@@ -334,7 +334,7 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_01w4b")
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("8_xyxkx")
+script = ExtResource("8_a6ttp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_31gqk")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://j0gpddyaeojq"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="Script" path="res://GameObjects/Enemies/Bees/EnemyBee.cs" id="1_ambfj"]
-[ext_resource type="Texture2D" uid="uid://bfra8bgv2eocq" path="res://Resources/Textures/Enemies/green_bee_sheet.png" id="2_orrqi"]
-[ext_resource type="Script" path="res://GameObjects/Enemies/EnemyHitbox.cs" id="3_mpen5"]
-[ext_resource type="Animation" uid="uid://q6ceoyvwavcx" path="res://Resources/Animations/Enemies/die.res" id="3_vtuky"]
-[ext_resource type="Animation" uid="uid://b1vu0e84cpp3j" path="res://Resources/Animations/Enemies/hit.res" id="4_urmbu"]
-[ext_resource type="PackedScene" uid="uid://b37542ptlitoj" path="res://Resources/Textures/Particles/Explosion1.tscn" id="6_cqke2"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Bee/EnemyBee.cs" id="1_bak1u"]
+[ext_resource type="Texture2D" uid="uid://bfra8bgv2eocq" path="res://Resources/Textures/Enemies/green_bee_sheet.png" id="2_2dsl0"]
+[ext_resource type="Animation" uid="uid://q6ceoyvwavcx" path="res://Resources/Animations/Enemies/die.res" id="3_xpkt5"]
+[ext_resource type="Animation" uid="uid://b1vu0e84cpp3j" path="res://Resources/Animations/Enemies/hit.res" id="4_f8pqm"]
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyHitbox.cs" id="5_tr6ij"]
+[ext_resource type="PackedScene" path="res://Resources/Textures/Particles/Explosion1.tscn" id="6_cj5sa"]
 
 [sub_resource type="Animation" id="Animation_t7dfh"]
 resource_name = "idle"
@@ -39,7 +39,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_28y4a"]
 _data = {
-"die": ExtResource("3_vtuky"),
+"die": ExtResource("3_xpkt5"),
 "idle": SubResource("Animation_t7dfh")
 }
 
@@ -62,7 +62,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oxa2k"]
 _data = {
-"hit": ExtResource("4_urmbu"),
+"hit": ExtResource("4_f8pqm"),
 "idle": SubResource("Animation_0iimu")
 }
 
@@ -75,7 +75,7 @@ radius = 9.0
 [node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Explosion", "Sprite", "Animator", "Shader")]
 collision_layer = 8
 collision_mask = 0
-script = ExtResource("1_ambfj")
+script = ExtResource("1_bak1u")
 Hitbox = NodePath("Hitbox")
 Explosion = NodePath("Explosion1")
 Sprite = NodePath("Sprite")
@@ -83,7 +83,7 @@ Animator = NodePath("Sprite/AnimationPlayer")
 Shader = NodePath("Sprite/Shader")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_orrqi")
+texture = ExtResource("2_2dsl0")
 hframes = 3
 vframes = 3
 
@@ -99,7 +99,7 @@ libraries = {
 }
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Parent")]
-script = ExtResource("3_mpen5")
+script = ExtResource("5_tr6ij")
 Parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -110,5 +110,5 @@ visible = false
 shape = SubResource("CircleShape2D_xr5ix")
 debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
 
-[node name="Explosion1" parent="." instance=ExtResource("6_cqke2")]
+[node name="Explosion1" parent="." instance=ExtResource("6_cj5sa")]
 position = Vector2(0, 0)

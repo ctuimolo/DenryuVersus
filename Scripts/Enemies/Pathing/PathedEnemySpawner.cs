@@ -47,6 +47,7 @@ namespace Enemies
             }
 
 			ResetEnemies();
+			TrySpawnEnemies();
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,14 +57,26 @@ namespace Enemies
 			{
 				ValidateEnemiesInbound();
 
-				if (CheckAllEnemiesDead())
+                if (CheckAllEnemiesDead())
+                {
+                    DeleteThis();
+					return;
+                }
+
+				if (CheckAllEnemiesFinishedPath())
 				{
-					ResetEnemies();
+					DeleteThis();
+					return;
 				}
 
-                TrySpawnEnemies();
+				TrySpawnEnemies();
             }
 		}
+
+		private void DeleteThis()
+        {
+			QueueFree();
+        }
 
 		private void ResetEnemies()
         {
@@ -108,6 +121,18 @@ namespace Enemies
             }
 			return true;
         }
+
+		private bool CheckAllEnemiesFinishedPath()
+		{
+			foreach (EnemyPath path in Paths)
+			{
+				if (path.Path.ProgressRatio < 1)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
 
 		private void TrySpawnEnemies()
         {

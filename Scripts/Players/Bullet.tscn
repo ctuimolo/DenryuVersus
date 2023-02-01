@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp47jeb1pb6kg"]
+[gd_scene load_steps=9 format=3 uid="uid://cex0cfhv7m8fw"]
 
-[ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="1_0jvy8"]
-[ext_resource type="Script" path="res://GameObjects/Players/Bullet.cs" id="1_nn30g"]
-[ext_resource type="Script" path="res://GameObjects/Players/BulletHitbox.cs" id="2_mff30"]
+[ext_resource type="Script" path="res://Scripts/Players/Bullet.cs" id="1_guiso"]
+[ext_resource type="Script" path="res://Scripts/Players/BulletHitbox.cs" id="2_skm8x"]
+[ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="3_st3d8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfan7"]
 size = Vector2(4, 6.75)
@@ -78,14 +78,14 @@ radius = 1.0
 disable_mode = 2
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_nn30g")
+script = ExtResource("1_guiso")
 Hitbox = NodePath("Hitbox")
 Animator = NodePath("Sprite2D/AnimationPlayer")
 Sprite = NodePath("Sprite2D")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -8)
-script = ExtResource("2_mff30")
+script = ExtResource("2_skm8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 z_index = 100
@@ -95,7 +95,7 @@ debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.647059, 0.592157, 1)
 z_index = 10
-texture = ExtResource("1_0jvy8")
+texture = ExtResource("3_st3d8")
 hframes = 4
 frame = 1
 
