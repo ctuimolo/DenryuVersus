@@ -12,13 +12,16 @@ namespace Players
 
     [Export]
     private AnimationPlayer _shipAnimator;
+    
     [Export]
     private AnimationPlayer _thrustAnimator;
 
     [Export]
     private Texture2D _redShipSprites;
+
     [Export]
     private Texture2D _blueShipSprites;
+
     [Export]
     private Sprite2D _shipSprite;
 
