@@ -18,8 +18,6 @@ namespace Enemies
     private Vector2 _velMaxNeg = new Vector2(10, -500);
     private int _currentHealth;
 
-    float t;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

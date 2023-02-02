@@ -1,14 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cprmkgjiojhmi"]
 
 [ext_resource type="PackedScene" path="res://Scripts/Cameras/MainCamera.tscn" id="1_5cemp"]
-[ext_resource type="PackedScene" uid="uid://dvs1x5ygxua3r" path="res://Scripts/PlayerInstances/PlayerInstance.tscn" id="2_8fqcu"]
+[ext_resource type="PackedScene" uid="uid://ckxw8q74ivo5a" path="res://Scripts/PlayerInstances/PlayerInstance.tscn" id="2_8fqcu"]
 [ext_resource type="Texture2D" uid="uid://c08eaxi14enby" path="res://Resources/Textures/UI/shmup_frame.png" id="3_yt3y6"]
 
 [node name="shmup_stage" type="Node2D"]
 metadata/_edit_lock_ = true
 
 [node name="MainCamera" parent="." instance=ExtResource("1_5cemp")]
-current = true
 
 [node name="PlayerInstance1" parent="." instance=ExtResource("2_8fqcu")]
 position = Vector2(-368, -202)
