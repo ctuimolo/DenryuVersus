@@ -131,17 +131,17 @@ namespace Players
 				VelocityChange += new Vector2(0, _shipSpeed);
 			}
 
-			if (VelocityChange.x != 0 && VelocityChange.y != 0)
+			if (VelocityChange.X != 0 && VelocityChange.Y != 0)
             {
 				VelocityChange *= _angularVector;
             }
 
-			if (VelocityChange.y > 0)
+			if (VelocityChange.Y > 0)
             {
 				_thrustAnimator.Play("down");
             }
 
-			else if (VelocityChange.y < 0)
+			else if (VelocityChange.Y < 0)
             {
 				_thrustAnimator.Play("up");
             }

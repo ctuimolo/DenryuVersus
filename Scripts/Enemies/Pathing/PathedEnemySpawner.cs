@@ -94,10 +94,10 @@ namespace Enemies
 			{
 				Vector2 enemySize = Utils.GetSpriteLiteralSize(enemy.Sprite);
 
-				if (enemy.GlobalPosition.x + enemySize.x/2 < PlayerInstance.Background.GlobalPosition.x ||
-					enemy.GlobalPosition.x - enemySize.x/2 > PlayerInstance.Background.GlobalPosition.x + PlayerInstance.Background.Size.x ||
-					enemy.GlobalPosition.y + enemySize.y/2 < PlayerInstance.Background.GlobalPosition.y ||
-					enemy.GlobalPosition.y - enemySize.y/2 > PlayerInstance.Background.GlobalPosition.y + PlayerInstance.Background.Size.y)
+				if (enemy.GlobalPosition.X + enemySize.X/2 < PlayerInstance.Background.GlobalPosition.X ||
+					enemy.GlobalPosition.X - enemySize.X/2 > PlayerInstance.Background.GlobalPosition.X + PlayerInstance.Background.Size.X ||
+					enemy.GlobalPosition.Y + enemySize.Y/2 < PlayerInstance.Background.GlobalPosition.Y ||
+					enemy.GlobalPosition.Y - enemySize.Y/2 > PlayerInstance.Background.GlobalPosition.Y + PlayerInstance.Background.Size.Y)
 				{
 					enemy.Visible = false;
 					enemy.Interactable = false;

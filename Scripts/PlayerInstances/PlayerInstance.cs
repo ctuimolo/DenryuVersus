@@ -37,21 +37,21 @@ namespace PlayerInstances
 		public override void _Ready()
 		{
 			// Setup collision walls
-			NorthWall.Position = new Vector2(Background.Size.x/2, 0);
-			NorthWall.Scale = new Vector2(Background.Size.x, 1);
+			NorthWall.Position = new Vector2(Background.Size.X/2, 0);
+			NorthWall.Scale = new Vector2(Background.Size.X, 1);
 
-			EastWall.Position = new Vector2(Background.Size.x/2, Background.Size.y);
-			EastWall.Scale = new Vector2(Background.Size.x, 1);
+			EastWall.Position = new Vector2(Background.Size.X/2, Background.Size.Y);
+			EastWall.Scale = new Vector2(Background.Size.X, 1);
 
-			SouthWall.Position = new Vector2(0, Background.Size.y/2);
-			SouthWall.Scale = new Vector2(1, Background.Size.y);
+			SouthWall.Position = new Vector2(0, Background.Size.Y/2);
+			SouthWall.Scale = new Vector2(1, Background.Size.Y);
 
-			WestWall.Position = new Vector2(Background.Size.x, Background.Size.y/2);
-			WestWall.Scale = new Vector2(1, Background.Size.y);
+			WestWall.Position = new Vector2(Background.Size.X, Background.Size.Y/2);
+			WestWall.Scale = new Vector2(1, Background.Size.Y);
 
 			// Instantiate player
 			ScenePlayer = PlayerPackage.Instantiate<Player>();
-			ScenePlayer.Position = new Vector2(Background.Size.x/2, Background.Size.y - 80);
+			ScenePlayer.Position = new Vector2(Background.Size.X/2, Background.Size.Y - 80);
 			ScenePlayer.SetPlayerNumber(PlayerNumber);
 			ScenePlayer.SetPlayerColor(PlayerColor);
 			ScenePlayer.Background = Background;

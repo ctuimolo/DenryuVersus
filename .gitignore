@@ -9,6 +9,7 @@ export.cfg
 # export_presets.cfg
 
 /Properties/launchSettings.json
+*.old
 
 # Imported translations (automatically generated from CSV files)
 *.translation

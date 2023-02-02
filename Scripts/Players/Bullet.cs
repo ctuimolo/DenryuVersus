@@ -85,7 +85,7 @@ namespace Players
 			if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
 			{
 
-				if (GlobalPosition.y < Manager.OwningPlayer.Background.GlobalPosition.y - Manager.OwningPlayer.Background.Size.y/2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).y)
+				if (GlobalPosition.Y < Manager.OwningPlayer.Background.GlobalPosition.Y - Manager.OwningPlayer.Background.Size.Y/2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).Y)
 				{
 					Deactivate();
 				}

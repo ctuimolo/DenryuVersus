@@ -30,7 +30,7 @@ namespace Backgrounds
 			{
 				Star newStar = StarPackage.Instantiate<Star>();
 
-				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.x), Utils.RandomFloat(0, Size.y));
+				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.X), Utils.RandomFloat(0, Size.Y));
 
 				_stars.Add(newStar);
 				AddChild(newStar);
@@ -41,7 +41,7 @@ namespace Backgrounds
 				Star newStar = StarPackage.Instantiate<Star>();
 
 				newStar.Slow = true;
-				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.x), Utils.RandomFloat(0, Size.y));
+				newStar.Position = new Vector2(Utils.RandomFloat(0, Size.X), Utils.RandomFloat(0, Size.Y));
 				_slowStars.Add(newStar);
 				AddChild(newStar);
 			}
@@ -53,18 +53,18 @@ namespace Backgrounds
 			foreach (Star star in _stars)
 			{
 				star.Position += StarSpeed;
-				if (star.Position.y > Size.y)
+				if (star.Position.Y > Size.Y)
 				{
-					star.Position = new Vector2(GD.Randi() % Size.x, 0);
+					star.Position = new Vector2(GD.Randi() % Size.X, 0);
 				}
 			}
 
 			foreach (Star star in _slowStars)
 			{
 				star.Position += StarSpeed / 3;
-				if (star.Position.y > Size.y)
+				if (star.Position.Y > Size.Y)
 				{
-					star.Position = new Vector2(GD.Randi() % Size.x, 0);
+					star.Position = new Vector2(GD.Randi() % Size.X, 0);
 				}
 			}
 		}

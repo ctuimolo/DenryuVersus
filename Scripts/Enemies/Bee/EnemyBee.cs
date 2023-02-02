@@ -34,7 +34,7 @@ namespace Enemies
 
 			Animator.CurrentAnimation = "idle";
 			Animator.Seek(GD.RandRange(0, Animator.CurrentAnimationLength), true);
-			Animator.PlaybackSpeed = Utils.RandomFloat(0.4f, 0.8f);
+			Animator.SpeedScale = Utils.RandomFloat(0.4f, 0.8f);
 
 			Explosion.Visible = false;
 			_currentHealth = Health;
