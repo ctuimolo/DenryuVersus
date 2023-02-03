@@ -16,7 +16,7 @@ script = ExtResource("1_u7u45")
 Path = NodePath("EnemyPath/EnemyPathFollow")
 
 [node name="EnemyPath" type="Path2D" parent="."]
-position = Vector2(57, 453)
+position = Vector2(65, 480)
 scale = Vector2(1, 1.103)
 curve = SubResource("Curve2D_2ohwt")
 

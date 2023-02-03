@@ -8,7 +8,7 @@ namespace Enemies
   public partial class PathedEnemySpawner : Node2D
   {
     [Export]
-    PlayerInstance PlayerInstance;
+    public PlayerInstance PlayerInstance;
 
     [Export]
     public PackedScene PathPackage;
@@ -30,6 +30,11 @@ namespace Enemies
     public List<EnemyPath> Paths = new List<EnemyPath>();
 
     private int _enemyIdx = 0;
+
+    public virtual void InitializeSpawns()
+    {
+
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

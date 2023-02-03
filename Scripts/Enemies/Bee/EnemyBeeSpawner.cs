@@ -1,15 +1,23 @@
-﻿using Godot;
+using Godot;
 using Utilities;
 
 namespace Enemies
 {
-  public partial class EnemyBeeSpawner : Node
+  public partial class EnemyBeeSpawner : PathedEnemySpawner
   {
-    [Export]
-    public PackedScene spawn_01;
-    [Export]
-    public PackedScene spawn_02;
-    [Export]
-    public PackedScene spawn_03;
+    public override void InitializeSpawns()
+    {
+      base.InitializeSpawns();
+    }
+
+    public override void _Ready()
+    {
+      base._Ready();
+    }
+
+    public override void _Process(double delta)
+    {
+      base._Process(delta);
+    }
   }
 }

@@ -29,7 +29,7 @@ namespace Players
     private BulletManager _cannons;
 
     [Export]
-    private int _cannonDelay = 8;
+    private int _cannonDelay = 10;
     private int _cannonTime = 0;
 
     private PlayerInputs _playerInputMap;

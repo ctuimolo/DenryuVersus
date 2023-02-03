@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Spawners/PathedEnemySpawner.cs" id="1_72qcr"]
+
+[node name="PathedEnemySpawner" type="Node2D"]
+script = ExtResource("1_72qcr")

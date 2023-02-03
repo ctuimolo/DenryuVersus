@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckxw8q74ivo5a"]
+[gd_scene load_steps=10 format=3 uid="uid://ckxw8q74ivo5a"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerInstances/PlayerInstance.cs" id="1_h4qko"]
 [ext_resource type="PackedScene" uid="uid://qefd68xku4yn" path="res://Scripts/Players/Player.tscn" id="2_b73i1"]
 [ext_resource type="PackedScene" uid="uid://deeb5q1nktge6" path="res://Scripts/Backgrounds/SpaceBackground.tscn" id="3_1vlm2"]
 [ext_resource type="PackedScene" path="res://Scripts/Dynamics/Wall.tscn" id="4_1x0cy"]
-[ext_resource type="PackedScene" uid="uid://t8teaexb6aab" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.tscn" id="5_kacco"]
-[ext_resource type="PackedScene" uid="uid://c1bvk88wbndgk" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner02.tscn" id="6_by0la"]
-[ext_resource type="PackedScene" uid="uid://cx6u1roq07s67" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="7_mscfd"]
+[ext_resource type="PackedScene" uid="uid://cugjhpi11fmbf" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.tscn" id="5_kacco"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyManager.cs" id="5_mwx1l"]
+[ext_resource type="PackedScene" uid="uid://nqu55idsvbgf" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner02.tscn" id="6_by0la"]
+[ext_resource type="PackedScene" uid="uid://cb0tnkhb6ys" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="7_mscfd"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyTimer.cs" id="9_cvtde"]
 
 [node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
 script = ExtResource("1_h4qko")
@@ -29,11 +31,13 @@ offset_bottom = 400.0
 
 [node name="Wall1" parent="." instance=ExtResource("4_1x0cy")]
 
-[node name="EnemyBee_Spawner01" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("5_kacco")]
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("PlayerInstance", "EnemyTimer")]
+script = ExtResource("5_mwx1l")
+BeeSpawners = Array[PackedScene]([ExtResource("5_kacco"), ExtResource("6_by0la"), ExtResource("7_mscfd")])
 PlayerInstance = NodePath("..")
+EnemyTimer = NodePath("EnemyTimer")
 
-[node name="EnemyBee_Spawner02" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("6_by0la")]
-PlayerInstance = NodePath("..")
-
-[node name="EnemyBee_Spawner03" parent="." node_paths=PackedStringArray("PlayerInstance") instance=ExtResource("7_mscfd")]
-PlayerInstance = NodePath("..")
+[node name="EnemyTimer" type="Timer" parent="Node2D"]
+wait_time = 12.0
+autostart = true
+script = ExtResource("9_cvtde")
