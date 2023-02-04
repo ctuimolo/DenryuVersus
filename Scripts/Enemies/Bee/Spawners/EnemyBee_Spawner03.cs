@@ -3,7 +3,7 @@ using System;
 
 namespace Enemies
 {
-	public partial class EnemyBee_Spawner03 : PathedEnemySpawner
+	public partial class EnemyBee_Spawner03 : EnemyBee_Spawner
 	{
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

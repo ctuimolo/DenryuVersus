@@ -16,8 +16,6 @@ namespace Enemies
     [Export]
     public PlayerInstance PlayerInstance;
 
-    public Enemy Enemy;
-
     public override void _Ready()
     {
       base._Ready();
