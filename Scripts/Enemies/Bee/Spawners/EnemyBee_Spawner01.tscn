@@ -1,13 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cugjhpi11fmbf"]
+[gd_scene load_steps=5 format=3 uid="uid://dwe15wcw63iv4"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Bee/EnemyBeeSpawner.cs" id="1_6h14i"]
-[ext_resource type="PackedScene" uid="uid://dwe15wcw63iv4" path="res://Scripts/Enemies/Bee/Paths/EnemyBee_Path01.tscn" id="2_2dprv"]
-[ext_resource type="PackedScene" uid="uid://b3npfvxk6q0yn" path="res://Scripts/Enemies/Bee/EnemyBee.tscn" id="3_fx2fy"]
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyInstance.cs" id="1_7558x"]
+[ext_resource type="PackedScene" uid="uid://b3npfvxk6q0yn" path="res://Scripts/Enemies/Bee/EnemyBee.tscn" id="2_f8pxe"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.cs" id="3_eyd2v"]
+[ext_resource type="PackedScene" uid="uid://cfelpnvmfko5k" path="res://Scripts/Enemies/Bee/Spawners/Paths/EnemyBee_Path01.tscn" id="4_q15dj"]
 
-[node name="EnemyBee_Spawner01" type="Node2D"]
-script = ExtResource("1_6h14i")
-PathPackage = ExtResource("2_2dprv")
-EnemyPackage = ExtResource("3_fx2fy")
+[node name="EnemyInstance" type="Node2D" node_paths=PackedStringArray("EnemySpawner")]
+script = ExtResource("1_7558x")
+EnemyPackage = ExtResource("2_f8pxe")
+EnemySpawner = NodePath("EnemyBee_Spawner01")
+
+[node name="EnemyBee_Spawner01" type="Node2D" parent="." node_paths=PackedStringArray("EnemyInstance")]
+script = ExtResource("3_eyd2v")
+PathPackage = ExtResource("4_q15dj")
 EnemyCount = 5
 EnemySeparation = 60
 Speed = 0.7
+EnemyInstance = NodePath("..")

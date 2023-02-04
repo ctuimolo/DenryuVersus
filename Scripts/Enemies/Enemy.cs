@@ -5,6 +5,9 @@ namespace Enemies
   public abstract partial class Enemy : CharacterBody2D, IDamageable
   {
     [Export]
+    public EnemyInstance EnemyInstance;
+
+    [Export]
     public Sprite2D Sprite;
 
     [Export]

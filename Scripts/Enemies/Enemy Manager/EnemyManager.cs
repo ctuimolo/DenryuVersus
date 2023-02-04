@@ -21,7 +21,7 @@ namespace Enemies
     {
 			foreach (PackedScene beePackage in BeeSpawners)
 			{
-				EnemyBeeSpawner bee = beePackage.Instantiate<EnemyBeeSpawner>();
+				EnemyInstance bee = beePackage.Instantiate<EnemyInstance>();
 				bee.PlayerInstance = PlayerInstance;
 				AddChild(bee);
 			}

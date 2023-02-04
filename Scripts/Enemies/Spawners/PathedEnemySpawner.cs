@@ -5,16 +5,10 @@ using Utilities;
 
 namespace Enemies
 {
-  public partial class PathedEnemySpawner : Node2D
+  public partial class PathedEnemySpawner : EnemySpawner
   {
     [Export]
-    public PlayerInstance PlayerInstance;
-
-    [Export]
     public PackedScene PathPackage;
-
-    [Export]
-    public PackedScene EnemyPackage;
 
     [Export]
     public int EnemyCount = 4;
@@ -31,23 +25,18 @@ namespace Enemies
 
     private int _enemyIdx = 0;
 
-    public virtual void InitializeSpawns()
-    {
-
-    }
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
       for (int i = 0; i < EnemyCount; i++)
       {
-        Enemies.Add(EnemyPackage.Instantiate<EnemyBee>());
-        Paths.Add(PathPackage.Instantiate<EnemyPath>());
+        Enemies.Add(EnemyInstance.EnemyPackage.Instantiate<EnemyBee>());
+        AddChild(Enemies[i]);
 
-        AddChild(Paths[i]);
+        Paths.Add(PathPackage.Instantiate<EnemyPath>());
         Paths[i].Path.Enemy = Enemies[i];
-        Paths[i].Path.AddChild(Enemies[i]);
         Paths[i].Path.SetSpeed(Speed);
+        AddChild(Paths[i]);
       }
 
       ResetEnemies();
@@ -59,6 +48,8 @@ namespace Enemies
     {
       if (Enemies.Count > 0 && Paths.Count > 0)
       {
+        MoveEnemies();
+
         ValidateEnemiesInbound();
 
         if (CheckAllEnemiesDead())
@@ -92,16 +83,24 @@ namespace Enemies
       }
     }
 
+    private void MoveEnemies()
+    {
+      foreach (EnemyPath path in Paths)
+      {
+        path.Path.Enemy.GlobalPosition = path.Path.GlobalPosition;
+      }
+    }
+
     private void ValidateEnemiesInbound()
     {
       foreach (Enemy enemy in Enemies)
       {
         Vector2 enemySize = Utils.GetSpriteLiteralSize(enemy.Sprite);
 
-        if (enemy.GlobalPosition.X + enemySize.X / 2 < PlayerInstance.Background.GlobalPosition.X ||
-          enemy.GlobalPosition.X - enemySize.X / 2 > PlayerInstance.Background.GlobalPosition.X + PlayerInstance.Background.Size.X ||
-          enemy.GlobalPosition.Y + enemySize.Y / 2 < PlayerInstance.Background.GlobalPosition.Y ||
-          enemy.GlobalPosition.Y - enemySize.Y / 2 > PlayerInstance.Background.GlobalPosition.Y + PlayerInstance.Background.Size.Y)
+        if (enemy.GlobalPosition.X + enemySize.X / 2 < EnemyInstance.PlayerInstance.Background.GlobalPosition.X ||
+            enemy.GlobalPosition.X - enemySize.X / 2 > EnemyInstance.PlayerInstance.Background.GlobalPosition.X + EnemyInstance.PlayerInstance.Background.Size.X ||
+            enemy.GlobalPosition.Y + enemySize.Y / 2 < EnemyInstance.PlayerInstance.Background.GlobalPosition.Y ||
+            enemy.GlobalPosition.Y - enemySize.Y / 2 > EnemyInstance.PlayerInstance.Background.GlobalPosition.Y + EnemyInstance.PlayerInstance.Background.Size.Y)
         {
           enemy.Visible = false;
           enemy.Interactable = false;
