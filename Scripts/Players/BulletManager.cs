@@ -14,12 +14,12 @@ namespace Players
     int _bulletIndex = 0;
 
     [Export]
-    public Player OwningPlayer;
+    public Player Player;
 
     [Export]
     public AnimationPlayer Animator;
 
-    List<Bullet> _bullets = new List<Bullet>();
+    private List<Bullet> _bullets = new List<Bullet>();
 
     private WorldManager _worldManager;
 
@@ -32,10 +32,10 @@ namespace Players
       for (int i = 0; i < BulletCount; i++)
       {
         Bullet newBullet = BulletPackage.Instantiate<Bullet>();
-        newBullet.Visible = false;
-        newBullet.Position = new Vector2(-20, -20);
         newBullet.Manager = this;
+        newBullet.Deactivate();
         _bullets.Add(newBullet);
+        _worldManager.AddChild(newBullet);
       }
 
       Animator.Play("idle");
@@ -45,13 +45,34 @@ namespace Players
     {
       Animator.Play("fire");
 
-      _worldManager.AddChild(_bullets[_bulletIndex]);
-      _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-7, -6)));
-      IncrementBulletIndex();
+      switch(Player.Level)
+      {
+        case 1:
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-7, -6)));
+          IncrementBulletIndex();
 
-      _worldManager.AddChild(_bullets[_bulletIndex]);
-      _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(7, -6)));
-      IncrementBulletIndex();
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(7, -6)));
+          IncrementBulletIndex();
+          break;
+
+        case 2:
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-4, -6)));
+          IncrementBulletIndex();
+
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(4, -6)));
+          IncrementBulletIndex();
+
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(-12, 0)));
+          IncrementBulletIndex();
+
+          _bullets[_bulletIndex].Fire(ToGlobal(Position + new Vector2(12, 0)));
+          IncrementBulletIndex();
+          break;
+
+        default:
+          break;
+      }
+
     }
 
     private void IncrementBulletIndex()

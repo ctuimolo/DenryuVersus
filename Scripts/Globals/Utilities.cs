@@ -11,7 +11,12 @@ namespace Utilities
 
     public static float RandomFloat(float from, float to)
     {
-      return (float)(from + GD.RandRange(0d, 1d) * (to - from));
+      return (float)GD.RandRange(from, to);
+    }
+
+    public static int RandomInt(int from, int to)
+    {
+      return GD.RandRange(from, to);
     }
 
     public static Vector2 QuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float time)

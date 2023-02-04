@@ -29,8 +29,11 @@ namespace Players
     private BulletManager _cannons;
 
     [Export]
-    private int _cannonDelay = 10;
-    private int _cannonTime = 0;
+    public int Level = 1;
+
+    [Export]
+    private float _cannonDelay = 10;
+    private float _cannonTime = 0;
 
     private PlayerInputs _playerInputMap;
     private WorldManager _worldManager;
@@ -150,7 +153,19 @@ namespace Players
     {
       if (_cannonTime > 0)
       {
-        _cannonTime--;
+        switch(Level)
+        {
+          case 1:
+            _cannonTime -= 1;
+            break;
+
+          case 2:
+            _cannonTime -= 1.2f;
+            break;
+          
+          default:
+            break;
+        }
       }
 
       if (_cannonTime <= 0 && Input.IsActionPressed(_playerInputMap.Button1))

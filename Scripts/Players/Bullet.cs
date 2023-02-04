@@ -49,7 +49,6 @@ namespace Players
       Velocity = Vector2.Zero;
       Visible = false;
       Hitbox.ProcessMode = ProcessModeEnum.Disabled;
-      _worldManager.RemoveChild(this);
     }
 
     public void Area2DEntered(Area2D other)
@@ -83,7 +82,7 @@ namespace Players
       if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
       {
 
-        if (GlobalPosition.Y < Manager.OwningPlayer.Background.GlobalPosition.Y - Manager.OwningPlayer.Background.Size.Y / 2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).Y)
+        if (GlobalPosition.Y < Manager.Player.Background.GlobalPosition.Y - Manager.Player.Background.Size.Y / 2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).Y)
         {
           Deactivate();
         }

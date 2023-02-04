@@ -280,10 +280,10 @@ _blueShipSprites = ExtResource("3_udx2c")
 _shipSprite = NodePath("Ship")
 _cannons = NodePath("Cannons")
 
-[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("OwningPlayer", "Animator")]
+[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("Player", "Animator")]
 script = ExtResource("4_xapqo")
 BulletPackage = ExtResource("5_4shsa")
-OwningPlayer = NodePath("..")
+Player = NodePath("..")
 Animator = NodePath("AnimationPlayer")
 
 [node name="Burst2" type="Sprite2D" parent="Cannons"]
@@ -311,7 +311,6 @@ vframes = 2
 frame = 3
 
 [node name="ThrustAnimator" type="AnimationPlayer" parent="Thrust"]
-playback_speed = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_s4d3h")
 }
