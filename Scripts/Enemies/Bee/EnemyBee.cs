@@ -33,7 +33,7 @@ namespace Enemies
     public override void _Ready()
     {
       base._Ready();
-      _bulletTimer.WaitTime = (double)Utils.RandomFloat(2, 7);
+      _bulletTimer.WaitTime = (double)Utils.RandomFloat(2, 15);
       _bulletTimer.Stop();
     }
 
