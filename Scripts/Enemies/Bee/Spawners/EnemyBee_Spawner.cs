@@ -18,9 +18,9 @@ namespace Enemies
 
 		private void RandomizeColor()
     {
-			float red = Utils.RandomFloat(150, 255)/255;
-			float green = Utils.RandomFloat(150, 255)/255;
-			float blue = Utils.RandomFloat(150, 255)/255;
+			float red = Utils.RandomFloat(160, 255)/255;
+			float green = Utils.RandomFloat(160, 255)/255;
+			float blue = Utils.RandomFloat(160, 255)/255;
 
 			Color color = new Color(red, green, blue);
 

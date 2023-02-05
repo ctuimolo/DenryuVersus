@@ -45,6 +45,8 @@ namespace Players
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+      ZIndex = Consts.ZORDER_PLAYER;
+
       _worldManager = GetTree().Root.GetNode<WorldManager>("WorldManager");
       _shipAnimator.Play("idle");
       _thrustAnimator.Play("idle");

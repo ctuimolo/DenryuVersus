@@ -1,23 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cprmkgjiojhmi"]
+[gd_scene load_steps=5 format=3 uid="uid://bde6qh1xg7py4"]
 
 [ext_resource type="PackedScene" path="res://Scripts/Cameras/MainCamera.tscn" id="1_5cemp"]
-[ext_resource type="PackedScene" uid="uid://ckxw8q74ivo5a" path="res://Scripts/PlayerInstances/PlayerInstance.tscn" id="2_8fqcu"]
 [ext_resource type="Texture2D" uid="uid://c08eaxi14enby" path="res://Resources/Textures/UI/shmup_frame.png" id="3_yt3y6"]
+[ext_resource type="PackedScene" uid="uid://14sy5pf4818b" path="res://Scripts/Players/PlayerInstance.tscn" id="4_br48h"]
+[ext_resource type="Script" path="res://Scenes/Frame.cs" id="4_mq3tw"]
 
 [node name="shmup_stage" type="Node2D"]
 metadata/_edit_lock_ = true
 
 [node name="MainCamera" parent="." instance=ExtResource("1_5cemp")]
 
-[node name="PlayerInstance1" parent="." instance=ExtResource("2_8fqcu")]
+[node name="Frame" type="Sprite2D" parent="."]
+z_index = 99
+scale = Vector2(2, 2)
+texture = ExtResource("3_yt3y6")
+script = ExtResource("4_mq3tw")
+
+[node name="PlayerInstance1" parent="." instance=ExtResource("4_br48h")]
 position = Vector2(-368, -202)
 
-[node name="PlayerInstance2" parent="." instance=ExtResource("2_8fqcu")]
+[node name="PlayerInstance2" parent="." instance=ExtResource("4_br48h")]
 position = Vector2(56, -202)
 PlayerNumber = 1
 PlayerColor = 1
-
-[node name="Frame" type="Sprite2D" parent="."]
-z_index = 30
-scale = Vector2(2, 2)
-texture = ExtResource("3_yt3y6")

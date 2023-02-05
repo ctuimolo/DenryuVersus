@@ -1,5 +1,5 @@
 using Godot;
-using PlayerInstances;
+using Players;
 using System.Collections.Generic;
 using Utilities;
 
@@ -30,7 +30,8 @@ namespace Enemies
     {
       for (int i = 0; i < EnemyCount; i++)
       {
-        Enemies.Add(EnemyInstance.EnemyPackage.Instantiate<EnemyBee>());
+        Enemies.Add(EnemyInstance.EnemyPackage.Instantiate<Enemy>());
+        Enemies[i].EnemyInstance = EnemyInstance;
         AddChild(Enemies[i]);
 
         Paths.Add(PathPackage.Instantiate<EnemyPath>());

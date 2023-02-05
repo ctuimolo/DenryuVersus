@@ -2,7 +2,7 @@ using Backgrounds;
 using Godot;
 using Players;
 
-namespace PlayerInstances
+namespace Players
 {
   public partial class PlayerInstance : Node2D
   {
@@ -35,6 +35,8 @@ namespace PlayerInstances
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+      ZIndex = Consts.ZORDER_BACKGROUND;
+
       // Setup collision walls
       NorthWall.Position = new Vector2(Background.Size.X / 2, 0);
       NorthWall.Scale = new Vector2(Background.Size.X, 1);

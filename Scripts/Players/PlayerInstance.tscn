@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://14sy5pf4818b"]
+
+[ext_resource type="Script" path="res://Scripts/Players/PlayerInstance.cs" id="1_80doa"]
+[ext_resource type="PackedScene" uid="uid://b3wxc3h0e2vai" path="res://Scripts/Players/Player.tscn" id="2_y5myv"]
+[ext_resource type="PackedScene" uid="uid://deeb5q1nktge6" path="res://Scripts/Backgrounds/SpaceBackground.tscn" id="3_pi4gt"]
+[ext_resource type="PackedScene" path="res://Scripts/Dynamics/Wall.tscn" id="4_fhy36"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyManager.cs" id="5_dy2hc"]
+[ext_resource type="PackedScene" uid="uid://dwe15wcw63iv4" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.tscn" id="6_of5lc"]
+[ext_resource type="PackedScene" uid="uid://bagdn8hi5x0m3" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner02.tscn" id="7_jk1tb"]
+[ext_resource type="PackedScene" uid="uid://c8ed3gs4b61am" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="8_rkh5d"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyTimer.cs" id="9_lsw3w"]
+
+[node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
+script = ExtResource("1_80doa")
+PlayerPackage = ExtResource("2_y5myv")
+Background = NodePath("SpaceBackground")
+NorthWall = NodePath("Wall2")
+EastWall = NodePath("Wall3")
+SouthWall = NodePath("Wall1")
+WestWall = NodePath("Wall4")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("3_pi4gt")]
+offset_right = 312.0
+offset_bottom = 400.0
+
+[node name="Wall4" parent="." instance=ExtResource("4_fhy36")]
+
+[node name="Wall3" parent="." instance=ExtResource("4_fhy36")]
+
+[node name="Wall2" parent="." instance=ExtResource("4_fhy36")]
+
+[node name="Wall1" parent="." instance=ExtResource("4_fhy36")]
+
+[node name="EnemyManager" type="Node2D" parent="." node_paths=PackedStringArray("PlayerInstance", "EnemyTimer")]
+script = ExtResource("5_dy2hc")
+BeeSpawners = Array[PackedScene]([ExtResource("6_of5lc"), ExtResource("7_jk1tb"), ExtResource("8_rkh5d")])
+PlayerInstance = NodePath("..")
+EnemyTimer = NodePath("EnemyTimer")
+
+[node name="EnemyTimer" type="Timer" parent="EnemyManager"]
+wait_time = 12.0
+autostart = true
+script = ExtResource("9_lsw3w")

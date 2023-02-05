@@ -1,14 +1,14 @@
-using Backgrounds;
-using Enemies;
 using Godot;
-using World;
 
-namespace Players
+using Dynamics;
+using Players;
+
+namespace Enemies
 {
-  public partial class Bullet : CharacterBody2D
+  public partial class EnemyBullet : CharacterBody2D
   {
     [Export]
-    BulletHitbox Hitbox;
+    EnemyBulletHitbox Hitbox;
 
     [Export]
     public AnimationPlayer Animator;
@@ -17,55 +17,53 @@ namespace Players
     public Sprite2D Sprite;
 
     [Export]
-    public float BulletSpeed = 1000;
-
-    public SpaceBackground Background;
-    public BulletManager Manager;
+    public PlayerInstance PlayerInstance;
 
     private bool _queueDeactivate;
-    private WorldManager _worldManager;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-      _worldManager = GetTree().Root.GetNode<WorldManager>("WorldManager");
+      ZIndex = Consts.ZORDER_FOREPARTICLE;
 
-      _queueDeactivate = false;
+      Deactivate();
+      
+      Animator.Play("idle");
 
       Hitbox.AreaEntered += Area2DEntered;
+
     }
 
-    public void Fire(Vector2 fireFrom)
+    public void Fire(Vector2 fireFrom, Vector2 direction)
     {
       _queueDeactivate = false;
       Visible = true;
-      Hitbox.ProcessMode = ProcessModeEnum.Always;
-      Animator.Play("fired");
+      ProcessMode = ProcessModeEnum.Always;
       Position = fireFrom;
+      Velocity = direction;
     }
 
     public void Deactivate()
     {
+      _queueDeactivate = false;
       Velocity = Vector2.Zero;
       Visible = false;
-      Hitbox.ProcessMode = ProcessModeEnum.Disabled;
+      ProcessMode = ProcessModeEnum.Disabled;
     }
 
     public void Area2DEntered(Area2D other)
     {
-      if (other is EnemyHitbox)
+      if (other is Hitbox)
       {
-        if (((EnemyHitbox)other).Parent.Alive && ((EnemyHitbox)other).Parent.Interactable)
-        {
-          Collide();
-        }
+        //if (((EnemyHitbox)other).Parent.Alive && ((EnemyHitbox)other).Parent.Interactable)
+        //{
+        //  Collide();
+        //}
       }
     }
 
     public void Collide()
     {
-      Animator.Play("hit");
-
       Velocity = Vector2.Zero;
       _queueDeactivate = true;
     }
@@ -73,21 +71,15 @@ namespace Players
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-      if (_queueDeactivate && !Animator.IsPlaying())
-      {
-        Deactivate();
-        return;
-      }
-
       if (Hitbox.ProcessMode != ProcessModeEnum.Disabled)
       {
-
-        if (GlobalPosition.Y < Manager.Player.Background.GlobalPosition.Y - Manager.Player.Background.Size.Y / 2 - Utilities.Utils.GetSpriteLiteralSize(Sprite).Y)
+        if (GlobalPosition.X + 6 < PlayerInstance.Background.GlobalPosition.X ||
+            GlobalPosition.X - 6 > PlayerInstance.Background.GlobalPosition.X + PlayerInstance.Background.Size.X ||
+            GlobalPosition.Y + 6 < PlayerInstance.Background.GlobalPosition.Y ||
+            GlobalPosition.Y - 6 > PlayerInstance.Background.GlobalPosition.Y + PlayerInstance.Background.Size.Y)
         {
           Deactivate();
         }
-
-        Velocity = new Vector2(0, -BulletSpeed);
       }
     }
 

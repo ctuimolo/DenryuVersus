@@ -1,7 +1,7 @@
 using Godot;
 using Utilities;
 
-using PlayerInstances;
+using Players;
 
 namespace Enemies
 {

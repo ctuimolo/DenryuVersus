@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3npfvxk6q0yn"]
+[gd_scene load_steps=14 format=3 uid="uid://b3npfvxk6q0yn"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Bee/EnemyBee.cs" id="1_bak1u"]
 [ext_resource type="Texture2D" uid="uid://bfra8bgv2eocq" path="res://Resources/Textures/Enemies/green_bee_sheet.png" id="2_2dsl0"]
+[ext_resource type="PackedScene" uid="uid://cu6awrxa65t0t" path="res://Scripts/Enemies/Bullets/EnemyBullet_BallSmall.tscn" id="2_gor76"]
 [ext_resource type="Animation" uid="uid://q6ceoyvwavcx" path="res://Resources/Animations/Enemies/die.res" id="3_xpkt5"]
 [ext_resource type="Animation" uid="uid://b1vu0e84cpp3j" path="res://Resources/Animations/Enemies/hit.res" id="4_f8pqm"]
 [ext_resource type="Script" path="res://Scripts/Enemies/EnemyHitbox.cs" id="5_tr6ij"]
@@ -72,12 +73,14 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xr5ix"]
 radius = 9.0
 
-[node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Explosion", "Sprite", "Animator", "Shader")]
+[node name="EnemyBee" type="CharacterBody2D" node_paths=PackedStringArray("Hitbox", "Explosion", "_bulletTimer", "Sprite", "Animator", "Shader")]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_bak1u")
 Hitbox = NodePath("Node/Hitbox")
 Explosion = NodePath("Explosion1")
+BulletPackage = ExtResource("2_gor76")
+_bulletTimer = NodePath("Timer")
 Sprite = NodePath("Node/Sprite")
 Animator = NodePath("Node/Sprite/AnimationPlayer")
 Shader = NodePath("Node/MainShader")
@@ -115,3 +118,7 @@ debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
 [node name="Explosion1" parent="." instance=ExtResource("6_cj5sa")]
 visible = false
 position = Vector2(0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.17
+autostart = true

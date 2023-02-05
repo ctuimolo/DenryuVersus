@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace Utilities
 {
@@ -30,6 +31,12 @@ namespace Utilities
     public static Vector2 GetSpriteLiteralSize(Sprite2D sprite)
     {
       return sprite.Texture.GetSize() / new Vector2(sprite.Hframes, sprite.Vframes) * sprite.Scale;
+    }
+
+    public static Vector2 GetNormalVectorBetween(Vector2 from, Vector2 to)
+    {
+      double theta = Math.Atan2((to.Y - from.Y),(to.X - from.X));
+      return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
     }
   }
 }
