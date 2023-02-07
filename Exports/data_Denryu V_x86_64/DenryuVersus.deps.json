@@ -9,8 +9,8 @@
     ".NETCoreApp,Version=v6.0/win-x64": {
       "DenryuVersus/1.0.0": {
         "dependencies": {
-          "Godot.SourceGenerators": "4.0.0-beta.14",
-          "GodotSharp": "4.0.0-beta.14",
+          "Godot.SourceGenerators": "4.0.0-beta.17",
+          "GodotSharp": "4.0.0-beta.17",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.11"
         },
         "runtime": {
@@ -854,8 +854,8 @@
           }
         }
       },
-      "Godot.SourceGenerators/4.0.0-beta.14": {},
-      "GodotSharp/4.0.0-beta.14": {
+      "Godot.SourceGenerators/4.0.0-beta.17": {},
+      "GodotSharp/4.0.0-beta.17": {
         "runtime": {
           "lib/net6.0/GodotSharp.dll": {
             "assemblyVersion": "4.0.0.0",
@@ -876,19 +876,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Godot.SourceGenerators/4.0.0-beta.14": {
+    "Godot.SourceGenerators/4.0.0-beta.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TUKL/esv9bc4mkQWNzs3tU27C5bgJXBBR3gtmeKxzRWfKbSnZPAugg7ir/KytQ99GWJ84SY5seYWWW+gu7sjFA==",
-      "path": "godot.sourcegenerators/4.0.0-beta.14",
-      "hashPath": "godot.sourcegenerators.4.0.0-beta.14.nupkg.sha512"
+      "sha512": "sha512-T49IEOrqBp2x5XEZqAC1t9yAJ9kJKGerNrVkzTkyXEz2CYuE+QdaxIsdujkIIvWovRfFWiCSf7BcdNXPpYOP0w==",
+      "path": "godot.sourcegenerators/4.0.0-beta.17",
+      "hashPath": "godot.sourcegenerators.4.0.0-beta.17.nupkg.sha512"
     },
-    "GodotSharp/4.0.0-beta.14": {
+    "GodotSharp/4.0.0-beta.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FG/EDZI9bwE029ZbUAZ51sWOT46w3uNHIMjL1SlIB55M0Asgq6XJKfrEdC7zfbA8XPlGSFBFuHjCM+SON3Rhmg==",
-      "path": "godotsharp/4.0.0-beta.14",
-      "hashPath": "godotsharp.4.0.0-beta.14.nupkg.sha512"
+      "sha512": "sha512-ypBbHFcvRgDolLW6JkBu9NvirvxFCrg1kkgbadDstWwomtH5JBwsUSTW9Ge/al21u5bNQfwjXOhnCa66Q21GfA==",
+      "path": "godotsharp/4.0.0-beta.17",
+      "hashPath": "godotsharp.4.0.0-beta.17.nupkg.sha512"
     }
   },
   "runtimes": {

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b37542ptlitoj"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Texture2D" uid="uid://dsarfd1gld1h3" path="res://Resources/Textures/Particles/explosion1.png" id="1_dmduu"]
-[ext_resource type="Script" path="res://GameObjects/Particles/Explosion.cs" id="2_bt2no"]
+[ext_resource type="Script" path="res://Scripts/Particles/Explosion.cs" id="2_bt2no"]
 
 [sub_resource type="Animation" id="Animation_8hrwa"]
 resource_name = "idle"
