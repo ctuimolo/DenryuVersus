@@ -1,68 +1,70 @@
 using Godot;
 
-using Globals;
-
 namespace Enemies
 {
-	public abstract partial class Enemy : CharacterBody2D, IDamageable
-	{
-		[Export]
-		public Sprite2D Sprite;
+  public abstract partial class Enemy : CharacterBody2D, IDamageable
+  {
+    [Export]
+    public EnemyInstance EnemyInstance;
 
-		[Export]
-		public AnimationPlayer Animator;
+    [Export]
+    public Sprite2D Sprite;
 
-		[Export]
-		public AnimationPlayer Shader;
+    [Export]
+    public AnimationPlayer Animator;
 
-		[Export]
-		public int Health = 40;
+    [Export]
+    public AnimationPlayer Shader;
 
-		public bool Alive			{ get; set; } = false;
-		public bool Interactable	{ get; set; } = false;
-		public bool IsDying			{ get; set; } = false;
-		public bool QueueDeath		{ get; set; } = false;
+    [Export]
+    public int Health = 40;
 
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
-		{
-		}
+    public bool Alive { get; set; } = false;
+    public bool Interactable { get; set; } = false;
+    public bool IsDying { get; set; } = false;
+    public bool QueueDeath { get; set; } = false;
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
-		{
-			if (QueueDeath)
-			{
-				Die();
-			}
-		}
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+      ZIndex = Consts.ZORDER_ENEMY;
+    }
 
-		private void Die(bool queueFree = false)
-        {
-			if(queueFree) QueueFree();
-			Interactable	= false;
-			Alive			= false;
-			IsDying			= false;
-			ProcessMode		= ProcessModeEnum.Disabled;
-		}
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+    {
+      if (QueueDeath)
+      {
+        Die();
+      }
+    }
 
-		public virtual void MakeAlive()
-        {
-			ProcessMode		= ProcessModeEnum.Always;
-			Alive			= true;
-			Interactable	= true;
-			QueueDeath		= false;
-			IsDying			= false;
-        }
+    private void Die(bool queueFree = false)
+    {
+      if (queueFree) QueueFree();
+      Interactable = false;
+      Alive = false;
+      IsDying = false;
+      ProcessMode = ProcessModeEnum.Disabled;
+    }
 
-		public override void _PhysicsProcess(double delta)
-		{
-			if(Alive)
-            {
-				MoveAndSlide();
-			}
-		}
+    public virtual void MakeAlive()
+    {
+      ProcessMode = ProcessModeEnum.Always;
+      Alive = true;
+      Interactable = true;
+      QueueDeath = false;
+      IsDying = false;
+    }
 
-		public abstract void TakeDamage(int damage);
-	}
+    public override void _PhysicsProcess(double delta)
+    {
+      if (Alive)
+      {
+        MoveAndSlide();
+      }
+    }
+
+    public abstract void TakeDamage(int damage);
+  }
 }

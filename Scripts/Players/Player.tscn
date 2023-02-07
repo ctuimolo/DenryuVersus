@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://qefd68xku4yn"]
+[gd_scene load_steps=24 format=3 uid="uid://b3wxc3h0e2vai"]
 
 [ext_resource type="Script" path="res://Scripts/Players/Player.cs" id="1_aycex"]
 [ext_resource type="Texture2D" uid="uid://dorsdtk3bn6ls" path="res://Resources/Textures/Ships/red_ship.png" id="2_xtx2c"]
 [ext_resource type="Texture2D" uid="uid://ynbska68vi48" path="res://Resources/Textures/Ships/blue_ship.png" id="3_udx2c"]
-[ext_resource type="Script" path="res://Scripts/Players/BulletManager.cs" id="4_xapqo"]
-[ext_resource type="PackedScene" uid="uid://cex0cfhv7m8fw" path="res://Scripts/Players/Bullet.tscn" id="5_4shsa"]
+[ext_resource type="Script" path="res://Scripts/Players/Bullets/BulletManager.cs" id="4_hp6qe"]
+[ext_resource type="PackedScene" uid="uid://cb606ub2xwuty" path="res://Scripts/Players/Bullets/Bullet.tscn" id="5_c5ai0"]
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="6_45qk6"]
 [ext_resource type="Texture2D" uid="uid://diw6e5hgggdx3" path="res://Resources/Textures/Ships/thrust-Sheet.png" id="7_1va5l"]
 [ext_resource type="Script" path="res://Scripts/Dynamics/Hitbox.cs" id="8_a6ttp"]
@@ -268,7 +268,7 @@ radius = 6.0
 radius = 12.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
-z_index = 20
+z_index = 10
 collision_layer = 2
 motion_mode = 1
 floor_stop_on_slope = false
@@ -280,10 +280,10 @@ _blueShipSprites = ExtResource("3_udx2c")
 _shipSprite = NodePath("Ship")
 _cannons = NodePath("Cannons")
 
-[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("OwningPlayer", "Animator")]
-script = ExtResource("4_xapqo")
-BulletPackage = ExtResource("5_4shsa")
-OwningPlayer = NodePath("..")
+[node name="Cannons" type="Node2D" parent="." node_paths=PackedStringArray("Player", "Animator")]
+script = ExtResource("4_hp6qe")
+BulletPackage = ExtResource("5_c5ai0")
+Player = NodePath("..")
 Animator = NodePath("AnimationPlayer")
 
 [node name="Burst2" type="Sprite2D" parent="Cannons"]
@@ -311,7 +311,6 @@ vframes = 2
 frame = 3
 
 [node name="ThrustAnimator" type="AnimationPlayer" parent="Thrust"]
-playback_speed = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_s4d3h")
 }
