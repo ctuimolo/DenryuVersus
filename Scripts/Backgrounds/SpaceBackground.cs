@@ -11,16 +11,16 @@ namespace Backgrounds
     PackedScene StarPackage;
 
     [Export]
-    int StarCount = 12;
+    int StarCount = 10;
 
     [Export]
-    int SlowStarCount = 12;
+    int SlowStarCount = 20;
 
     List<Star> _stars = new List<Star>();
     List<Star> _slowStars = new List<Star>();
 
     [Export]
-    Vector2 StarSpeed = new Vector2(0f, 0.25f);
+    Vector2 StarSpeed = new Vector2(0f, .75f);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

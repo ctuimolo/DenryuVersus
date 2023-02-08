@@ -28,6 +28,30 @@ namespace Enemies
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+    }
+
+    protected void TransformPaths(float speed, Vector2 position, Vector2 scale, bool mirror = false)
+    {
+      foreach(EnemyPath enemyPath in Paths)
+      {
+        enemyPath.Scale    = scale;
+        enemyPath.Path.SetSpeed(speed);
+
+        if (mirror)
+        {
+          enemyPath.Scale     = new Vector2(enemyPath.Scale.X * -1, enemyPath.Scale.Y);
+          enemyPath.Position  += new Vector2(EnemyInstance.PlayerInstance.Background.Size.X, 0);
+          enemyPath.Position  = new Vector2(EnemyInstance.PlayerInstance.Background.Size.X - position.X, position.Y);
+        }
+        else
+        {
+          enemyPath.Position = position;
+        }
+      }
+    }
+
+    protected void Initialize()
+    {
       for (int i = 0; i < EnemyCount; i++)
       {
         Enemies.Add(EnemyInstance.EnemyPackage.Instantiate<Enemy>());

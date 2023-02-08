@@ -34,7 +34,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0333334, 0.0666668, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.74902, 0.74902, 1), Color(1, 1, 1, 1), Color(1, 0.74902, 0.74902, 1)]
+"values": [Color(1.68, 1.69, 1.69, 1), Color(1, 0.74902, 0.74902, 1), Color(1, 1, 1, 1), Color(1, 0.74902, 0.74902, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h5kk8"]
@@ -63,7 +63,7 @@ shape = SubResource("CircleShape2D_qi3ul")
 debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.751179, 0.751179, 1)
+self_modulate = Color(1, 0.74902, 0.74902, 1)
 z_index = 10
 texture = ExtResource("3_7ap6k")
 hframes = 3

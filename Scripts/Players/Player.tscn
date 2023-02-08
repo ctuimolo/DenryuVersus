@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://b3wxc3h0e2vai"]
 
 [ext_resource type="Script" path="res://Scripts/Players/Player.cs" id="1_aycex"]
-[ext_resource type="Texture2D" uid="uid://dorsdtk3bn6ls" path="res://Resources/Textures/Ships/red_ship.png" id="2_xtx2c"]
-[ext_resource type="Texture2D" uid="uid://ynbska68vi48" path="res://Resources/Textures/Ships/blue_ship.png" id="3_udx2c"]
+[ext_resource type="Texture2D" uid="uid://c8qa00r1omc44" path="res://Resources/Textures/Ships/ship_wingsup_sheet.png" id="2_gd3e3"]
+[ext_resource type="Texture2D" uid="uid://cs6uxm2ihpwfb" path="res://Resources/Textures/Ships/ship_wingsdown_sheet.png" id="3_kmvl0"]
 [ext_resource type="Script" path="res://Scripts/Players/Bullets/BulletManager.cs" id="4_hp6qe"]
 [ext_resource type="PackedScene" uid="uid://cb606ub2xwuty" path="res://Scripts/Players/Bullets/Bullet.tscn" id="5_c5ai0"]
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="6_45qk6"]
@@ -275,8 +275,8 @@ floor_stop_on_slope = false
 script = ExtResource("1_aycex")
 _shipAnimator = NodePath("Ship/ShipAnimator")
 _thrustAnimator = NodePath("Thrust/ThrustAnimator")
-_redShipSprites = ExtResource("2_xtx2c")
-_blueShipSprites = ExtResource("3_udx2c")
+_redShipSprites = ExtResource("3_kmvl0")
+_blueShipSprites = ExtResource("2_gd3e3")
 _shipSprite = NodePath("Ship")
 _cannons = NodePath("Cannons")
 
@@ -317,7 +317,7 @@ libraries = {
 
 [node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_xtx2c")
+texture = ExtResource("3_kmvl0")
 hframes = 3
 vframes = 2
 metadata/_edit_lock_ = true

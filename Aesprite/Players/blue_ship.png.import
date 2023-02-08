@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ynbska68vi48"
-path="res://.godot/imported/blue_ship.png-ce9bc4c4088134e7a0db898db53c41de.ctex"
+uid="uid://bj3gs1jeytjie"
+path="res://.godot/imported/blue_ship.png-c24ddf06cecc7f8dfed0ea23b2ef7560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Ships/blue_ship.png"
-dest_files=["res://.godot/imported/blue_ship.png-ce9bc4c4088134e7a0db898db53c41de.ctex"]
+source_file="res://Aesprite/Players/blue_ship.png"
+dest_files=["res://.godot/imported/blue_ship.png-c24ddf06cecc7f8dfed0ea23b2ef7560.ctex"]
 
 [params]
 

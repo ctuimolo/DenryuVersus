@@ -12,11 +12,9 @@ namespace Enemies
 		public override void _Ready()
 		{
 			base._Ready();
-
-			RandomizeColor();
 		}
 
-		private void RandomizeColor()
+		protected void RandomizeColor()
     {
 			float red = Utils.RandomFloat(160, 255)/255;
 			float green = Utils.RandomFloat(160, 255)/255;

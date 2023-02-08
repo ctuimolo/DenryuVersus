@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/red_ship.png-9c9c709405b51e7944f81aa579e4fa9b
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

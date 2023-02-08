@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ynbska68vi48"
-path="res://.godot/imported/blue_ship.png-ce9bc4c4088134e7a0db898db53c41de.ctex"
+uid="uid://cs6uxm2ihpwfb"
+path="res://.godot/imported/ship_wingsdown_sheet.png-b47a87467e7ac9bc64d18ece0d0ed498.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Ships/blue_ship.png"
-dest_files=["res://.godot/imported/blue_ship.png-ce9bc4c4088134e7a0db898db53c41de.ctex"]
+source_file="res://Resources/Textures/Ships/ship_wingsdown_sheet.png"
+dest_files=["res://.godot/imported/ship_wingsdown_sheet.png-b47a87467e7ac9bc64d18ece0d0ed498.ctex"]
 
 [params]
 
