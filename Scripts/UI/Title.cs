@@ -12,14 +12,27 @@ public partial class Title : Sprite2D
   // Called when the node enters the scene tree for the first time.
   public override void _Ready()
 	{
-		AnimationPlayer.Play("fade in");
-		AnimationTimer.Start(1);
-		AnimationTimer.OneShot = true;
+		Visible = false;
 
-		AnimationTimer.Timeout += new Action(PlayAnimation);
+		AnimationTimer = new Timer();
+		AnimationTimer.OneShot = true;
+		AnimationTimer.Timeout += new Action(PlayAnimationFadeIn);
+		AddChild(AnimationTimer);
+		AnimationTimer.Start(2);
 	}
 
-	private void PlayAnimation()
+	private void PlayAnimationFadeIn()
+  {
+		AnimationPlayer.Play("fade in");
+
+		AnimationTimer = new Timer();
+		AnimationTimer.OneShot = true;
+		AnimationTimer.Timeout += new Action(PlayAnimationSpark);
+		AddChild(AnimationTimer);
+		AnimationTimer.Start(1);
+	}
+
+	private void PlayAnimationSpark()
 	{
     AnimationPlayer.Play("spark");
   }
@@ -27,7 +40,7 @@ public partial class Title : Sprite2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(!AnimationPlayer.IsPlaying())
+		if(AnimationPlayer.AssignedAnimation == "spark" && !AnimationPlayer.IsPlaying())
 		{
 			AnimationPlayer.Play("idle");
 		}
