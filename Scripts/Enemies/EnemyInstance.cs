@@ -7,23 +7,23 @@ namespace Enemies
 {
   public partial class EnemyInstance : Node2D
   {
-    [Export]
-    public PackedScene EnemyPackage;
+	[Export]
+	public PackedScene EnemyPackage;
 
-    [Export]
-    public EnemySpawner EnemySpawner;
+	[Export]
+	public EnemySpawner EnemySpawner;
 
-    [Export]
-    public PlayerInstance PlayerInstance;
+	[Export]
+	public PlayerInstance PlayerInstance;
 
-    public override void _Ready()
-    {
-      base._Ready();
-    }
+	public override void _Ready()
+	{
+	  base._Ready();
+	}
 
-    public override void _Process(double delta)
-    {
-      base._Process(delta);
-    }
+	public override void _Process(double delta)
+	{
+	  base._Process(delta);
+	}
   }
 }
