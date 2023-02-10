@@ -1,9 +1,11 @@
 using Godot;
+using System;
 
-namespace Cameras
+public partial class StateAnimator : AnimationPlayer
 {
-  public partial class MainCamera : Camera2D
-  {
+	[Export]
+	Timer Timer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -12,15 +14,5 @@ namespace Cameras
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	  if (Input.IsActionPressed("zoom_in"))
-	  {
-		Zoom *= 1.01f;
-	  }
-
-	  if (Input.IsActionPressed("zoom_out"))
-	  {
-		Zoom /= 1.01f;
-	  }
 	}
-  }
 }

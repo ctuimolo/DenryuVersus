@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3wxc3h0e2vai"]
+[gd_scene load_steps=28 format=3 uid="uid://b3wxc3h0e2vai"]
 
 [ext_resource type="Script" path="res://Scripts/Players/Player.cs" id="1_aycex"]
 [ext_resource type="Texture2D" uid="uid://c8qa00r1omc44" path="res://Resources/Textures/Ships/ship_wingsup_sheet.png" id="2_gd3e3"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cb606ub2xwuty" path="res://Scripts/Players/Bullets/Bullet.tscn" id="5_c5ai0"]
 [ext_resource type="Texture2D" uid="uid://b6mgqkydy4on5" path="res://Resources/Textures/Ships/bullet-Sheet.png" id="6_45qk6"]
 [ext_resource type="Texture2D" uid="uid://diw6e5hgggdx3" path="res://Resources/Textures/Ships/thrust-Sheet.png" id="7_1va5l"]
-[ext_resource type="Script" path="res://Scripts/Dynamics/Hitbox.cs" id="8_a6ttp"]
+[ext_resource type="Script" path="res://Scripts/Players/PlayerHitbox.cs" id="8_ctko7"]
+[ext_resource type="Script" path="res://Scripts/Dynamics/StateAnimator.cs" id="9_p4e65"]
 
 [sub_resource type="Animation" id="Animation_b21xg"]
 resource_name = "fire"
@@ -267,12 +268,92 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_31gqk"]
 radius = 12.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
+[sub_resource type="Animation" id="Animation_mls3v"]
+resource_name = "Alive and idle"
+length = 0.0166683
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:Alive")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:Interactable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_50kub"]
+resource_name = "hit"
+length = 0.0666683
+loop_mode = 1
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:Alive")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:Interactable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdcj5"]
+_data = {
+"Alive and idle": SubResource("Animation_mls3v"),
+"hit": SubResource("Animation_50kub")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("StateAnimator", "_shipAnimator", "_thrustAnimator", "_shipSprite", "_cannons")]
 z_index = 10
 collision_layer = 2
 motion_mode = 1
 floor_stop_on_slope = false
 script = ExtResource("1_aycex")
+StateAnimator = NodePath("StateAnimator")
+Alive = true
+Interactable = true
 _shipAnimator = NodePath("Ship/ShipAnimator")
 _thrustAnimator = NodePath("Thrust/ThrustAnimator")
 _redShipSprites = ExtResource("3_kmvl0")
@@ -290,11 +371,13 @@ Animator = NodePath("AnimationPlayer")
 position = Vector2(8, -10)
 texture = ExtResource("6_45qk6")
 hframes = 4
+frame = 2
 
 [node name="Burst1" type="Sprite2D" parent="Cannons"]
 position = Vector2(-8, -10)
 texture = ExtResource("6_45qk6")
 hframes = 4
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cannons"]
 root_node = NodePath("../..")
@@ -332,9 +415,19 @@ libraries = {
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_01w4b")
 
-[node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("8_a6ttp")
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Parent")]
+script = ExtResource("8_ctko7")
+Parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_31gqk")
 debug_color = Color(0.815686, 0.298039, 0.701961, 0.419608)
+
+[node name="StateAnimator" type="AnimationPlayer" parent="." node_paths=PackedStringArray("Timer")]
+libraries = {
+"": SubResource("AnimationLibrary_jdcj5")
+}
+script = ExtResource("9_p4e65")
+Timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateAnimator"]

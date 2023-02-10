@@ -18,7 +18,7 @@ public partial class Title : Sprite2D
 		AnimationTimer.OneShot = true;
 		AnimationTimer.Timeout += new Action(PlayAnimationFadeIn);
 		AddChild(AnimationTimer);
-		AnimationTimer.Start(2);
+		AnimationTimer.Start(1);
 	}
 
 	private void PlayAnimationFadeIn()
