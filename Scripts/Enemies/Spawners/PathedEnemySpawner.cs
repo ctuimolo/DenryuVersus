@@ -28,6 +28,7 @@ namespace Enemies
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+      base._Ready();
     }
 
     protected void TransformPaths(float speed, Vector2 position, Vector2 scale, bool mirror = false)
@@ -56,6 +57,7 @@ namespace Enemies
       {
         Enemies.Add(EnemyInstance.EnemyPackage.Instantiate<Enemy>());
         Enemies[i].EnemyInstance = EnemyInstance;
+        Enemies[i].Visible = false;
         AddChild(Enemies[i]);
 
         Paths.Add(PathPackage.Instantiate<EnemyPath>());

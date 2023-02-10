@@ -1,4 +1,5 @@
 using Backgrounds;
+using Enemies;
 using Godot;
 using Players;
 
@@ -6,63 +7,80 @@ namespace Players
 {
   public partial class PlayerInstance : Node2D
   {
-	[Export]
-	PlayerNumbers PlayerNumber;
+    [Export]
+    PlayerNumbers PlayerNumber;
 
-	[Export]
-	PlayerColors PlayerColor;
+    [Export]
+    PlayerColors PlayerColor;
 
-	[Export]
-	PackedScene PlayerPackage;
+    [Export]
+    PackedScene PlayerPackage;
 
-	[Export]
-	public SpaceBackground Background;
+    [Export]
+    public SpaceBackground Background;
 
-	[Export]
-	StaticBody2D NorthWall;
+    [Export]
+    EnemyManager EnemyManager;
 
-	[Export]
-	StaticBody2D EastWall;
+    [Export]
+    public AnimationPlayer StateAnimator;
 
-	[Export]
-	StaticBody2D SouthWall;
+    [Export]
+    StaticBody2D NorthWall;
 
-	[Export]
-	StaticBody2D WestWall;
+    [Export]
+    StaticBody2D EastWall;
 
-	public Player ScenePlayer;
+    [Export]
+    StaticBody2D SouthWall;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	  ZIndex = Consts.ZORDER_BACKGROUND;
+    [Export]
+    StaticBody2D WestWall;
 
-	  // Setup collision walls
-	  NorthWall.Position = new Vector2(Background.Size.X / 2, 0);
-	  NorthWall.Scale = new Vector2(Background.Size.X, 1);
+    public Player ScenePlayer;
 
-	  EastWall.Position = new Vector2(Background.Size.X / 2, Background.Size.Y);
-	  EastWall.Scale = new Vector2(Background.Size.X, 1);
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+      ZIndex = Consts.ZORDER_BACKGROUND;
 
-	  SouthWall.Position = new Vector2(0, Background.Size.Y / 2);
-	  SouthWall.Scale = new Vector2(1, Background.Size.Y);
+      // Setup collision walls
+      NorthWall.Position = new Vector2(Background.Size.X / 2, 0);
+      NorthWall.Scale = new Vector2(Background.Size.X, 1);
 
-	  WestWall.Position = new Vector2(Background.Size.X, Background.Size.Y / 2);
-	  WestWall.Scale = new Vector2(1, Background.Size.Y);
+      EastWall.Position = new Vector2(Background.Size.X / 2, Background.Size.Y);
+      EastWall.Scale = new Vector2(Background.Size.X, 1);
 
-	  // Instantiate player
-	  ScenePlayer = PlayerPackage.Instantiate<Player>();
-	  ScenePlayer.Position = new Vector2(Background.Size.X / 2, Background.Size.Y - 80);
-	  ScenePlayer.SetPlayerNumber(PlayerNumber);
-	  ScenePlayer.SetPlayerColor(PlayerColor);
-	  ScenePlayer.Background = Background;
+      SouthWall.Position = new Vector2(0, Background.Size.Y / 2);
+      SouthWall.Scale = new Vector2(1, Background.Size.Y);
 
-	  AddChild(ScenePlayer);
-	}
+      WestWall.Position = new Vector2(Background.Size.X, Background.Size.Y / 2);
+      WestWall.Scale = new Vector2(1, Background.Size.Y);
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+      // Instantiate player
+      ScenePlayer = PlayerPackage.Instantiate<Player>();
+      ScenePlayer.Position = new Vector2(Background.Size.X / 2, Background.Size.Y - 80);
+      ScenePlayer.SetPlayerNumber(PlayerNumber);
+      ScenePlayer.SetPlayerColor(PlayerColor);
+      ScenePlayer.Background = Background;
+
+      AddChild(ScenePlayer);
+
+      EnemyManager.ProcessMode = ProcessModeEnum.Pausable;
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+    {
+      if (Input.IsActionJustPressed("debug1"))
+      {
+        EnemyManager.GetTree().Paused = true;
+      }
+
+      if (Input.IsActionJustPressed("debug2"))
+      {
+        EnemyManager.GetTree().Paused = false;
+      }
+    }
   }
 }

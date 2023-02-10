@@ -84,7 +84,9 @@ namespace Players
 
     public void TakeDamage(int damage)
     {
-      string test = "";
+      StateAnimator.ClearQueue();
+      StateAnimator.Play("respawn invuln");
+      StateAnimator.Queue("Alive and idle");
     }
 
     private void CheckMovement()

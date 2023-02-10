@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://14sy5pf4818b"]
+[gd_scene load_steps=13 format=3 uid="uid://14sy5pf4818b"]
 
 [ext_resource type="Script" path="res://Scripts/Players/PlayerInstance.cs" id="1_80doa"]
 [ext_resource type="PackedScene" uid="uid://b3wxc3h0e2vai" path="res://Scripts/Players/Player.tscn" id="2_y5myv"]
@@ -10,10 +10,74 @@
 [ext_resource type="PackedScene" uid="uid://c8ed3gs4b61am" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="8_rkh5d"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyTimer.cs" id="9_lsw3w"]
 
-[node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "NorthWall", "EastWall", "SouthWall", "WestWall")]
+[sub_resource type="Animation" id="Animation_anvke"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyManager:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceBackground:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pacm4"]
+resource_name = "flash"
+length = 0.700002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyManager:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceBackground:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00178907, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0.5, 0.5, 0.5, 1), Color(0, 0, 0, 1), Color(0.5, 0.5, 0.5, 1), Color(0, 0, 0, 1), Color(0.5, 0.5, 0.5, 1), Color(0, 0, 0, 1), Color(0.5, 0.5, 0.5, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o161c"]
+_data = {
+"RESET": SubResource("Animation_anvke"),
+"flash": SubResource("Animation_pacm4")
+}
+
+[node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "EnemyManager", "StateAnimator", "NorthWall", "EastWall", "SouthWall", "WestWall")]
 script = ExtResource("1_80doa")
 PlayerPackage = ExtResource("2_y5myv")
 Background = NodePath("SpaceBackground")
+EnemyManager = NodePath("EnemyManager")
+StateAnimator = NodePath("StateAnimator")
 NorthWall = NodePath("Wall2")
 EastWall = NodePath("Wall3")
 SouthWall = NodePath("Wall1")
@@ -32,8 +96,9 @@ offset_bottom = 400.0
 [node name="Wall1" parent="." instance=ExtResource("4_fhy36")]
 
 [node name="EnemyManager" type="Node2D" parent="." node_paths=PackedStringArray("PlayerInstance", "EnemyTimer")]
+process_mode = 1
 script = ExtResource("5_dy2hc")
-BeeSpawners = Array[PackedScene]([ExtResource("6_of5lc"), ExtResource("7_jk1tb"), ExtResource("8_rkh5d")])
+BeeSpawnersPackages = Array[PackedScene]([ExtResource("6_of5lc"), ExtResource("7_jk1tb"), ExtResource("8_rkh5d")])
 PlayerInstance = NodePath("..")
 EnemyTimer = NodePath("EnemyTimer")
 
@@ -41,3 +106,9 @@ EnemyTimer = NodePath("EnemyTimer")
 wait_time = 12.0
 autostart = true
 script = ExtResource("9_lsw3w")
+
+[node name="StateAnimator" type="AnimationPlayer" parent="."]
+speed_scale = 2.0
+libraries = {
+"": SubResource("AnimationLibrary_o161c")
+}

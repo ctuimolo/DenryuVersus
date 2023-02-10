@@ -9,7 +9,7 @@ namespace Enemies
 	public partial class EnemyManager : Node2D
 	{
 		[Export]
-		public PackedScene[] BeeSpawners;
+		public PackedScene[] BeeSpawnersPackages;
 
 		[Export]
 		public PlayerInstance PlayerInstance;
@@ -19,11 +19,11 @@ namespace Enemies
 
 		private void SpawnBees()
     {
-			foreach (PackedScene beePackage in BeeSpawners)
+			foreach (PackedScene package in BeeSpawnersPackages)
 			{
-				EnemyInstance bee = beePackage.Instantiate<EnemyInstance>();
-				bee.PlayerInstance = PlayerInstance;
-				AddChild(bee);
+				EnemyInstance beeSpawner = package.Instantiate<EnemyInstance>();
+				beeSpawner.PlayerInstance = PlayerInstance;
+				AddChild(beeSpawner);
 			}
 		}
 

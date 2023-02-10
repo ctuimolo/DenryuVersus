@@ -50,6 +50,7 @@ namespace Enemies
 
     public virtual void MakeAlive()
     {
+      Visible = true;
       ProcessMode = ProcessModeEnum.Always;
       Alive = true;
       Interactable = true;
