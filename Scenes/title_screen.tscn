@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvdmowscwifoq"]
+[gd_scene load_steps=15 format=3 uid="uid://dvdmowscwifoq"]
 
+[ext_resource type="Script" path="res://Scenes/TitleScreen.cs" id="1_g1na8"]
 [ext_resource type="PackedScene" path="res://Scripts/Cameras/MainCamera.tscn" id="1_r5bwb"]
 [ext_resource type="Texture2D" uid="uid://2uny38437mvp" path="res://Resources/Textures/UI/title_transparent-Sheet.png" id="2_buv7e"]
+[ext_resource type="PackedScene" uid="uid://dwgsi5a6vdihy" path="res://Scenes/shmup_stage.tscn" id="2_jhj68"]
 [ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="3_vt2p1"]
 
 [sub_resource type="Animation" id="Animation_txuwa"]
@@ -112,7 +114,259 @@ _data = {
 "spark": SubResource("Animation_ijh0u")
 }
 
-[node name="shmup_stage" type="Node2D"]
+[sub_resource type="Animation" id="Animation_wj6fi"]
+resource_name = "1"
+length = 1.71801
+loop_mode = 1
+step = 0.0859
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.859003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player1Text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Player 1: Press fire..."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player2Text:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_08xei"]
+resource_name = "2"
+length = 1.71801
+loop_mode = 1
+step = 0.0859
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.859003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player1Text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Confirmed!
+"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player2Text:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Player 2: Press fire..."]
+}
+
+[sub_resource type="Animation" id="Animation_c53em"]
+resource_name = "3"
+length = 1.03081
+step = 0.0859
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player1Text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Confirmed!
+"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player2Text:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Confirmed!
+"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect2:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.859003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.0308),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ChangeScene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jnyvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2Text:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player1Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player1Text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": ["Player 1: Press fire..."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player2Text:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": ["Player 2: Press fire..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crne4"]
+_data = {
+"1": SubResource("Animation_wj6fi"),
+"2": SubResource("Animation_08xei"),
+"3": SubResource("Animation_c53em"),
+"RESET": SubResource("Animation_jnyvg")
+}
+
+[node name="TitleScreen" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
+script = ExtResource("1_g1na8")
+AnimationPlayer = NodePath("AnimationPlayer")
+ShmupStage = ExtResource("2_jhj68")
 metadata/_edit_lock_ = true
 
 [node name="MainCamera" parent="." instance=ExtResource("1_r5bwb")]
@@ -130,7 +384,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_buv7e")
 hframes = 4
 vframes = 3
-frame = 10
+frame = 2
 script = ExtResource("3_vt2p1")
 AnimationTimer = NodePath("")
 AnimationPlayer = NodePath("AnimationPlayer")
@@ -139,3 +393,42 @@ AnimationPlayer = NodePath("AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_jtptr")
 }
+
+[node name="Player1Text" type="Label" parent="."]
+visible = false
+offset_left = -317.0
+offset_top = 153.0
+offset_right = -118.0
+offset_bottom = 220.0
+scale = Vector2(1.46036, 1.46036)
+text = "Player 1: Press fire..."
+
+[node name="Player2Text" type="Label" parent="."]
+visible = false
+offset_left = 24.0
+offset_top = 153.0
+offset_right = 223.0
+offset_bottom = 220.0
+scale = Vector2(1.46036, 1.46036)
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Player 2: Press fire..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_crne4")
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.0999996)

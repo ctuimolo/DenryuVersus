@@ -67,7 +67,6 @@ namespace Players
       ScenePlayer.SetPlayerNumber(PlayerNumber);
       ScenePlayer.SetPlayerColor(PlayerColor);
       ScenePlayer.Background = Background;
-      ScenePlayer.DeviceNumber = DeviceNumber;
 
       AddChild(ScenePlayer);
     }

@@ -9,9 +9,6 @@ namespace Players
   {
     #region Exports
     [Export]
-    public int DeviceNumber;
-
-    [Export]
     private StateAnimator StateAnimator;
 
     [Export]
@@ -251,7 +248,7 @@ namespace Players
     {
       base._Input(@event);
 
-      if(@event.Device == DeviceNumber)
+      if(@event.Device == PlayerInstance.DeviceNumber)
       {
         if(@event.IsActionPressed(_playerInputMap.Button1))
         {
