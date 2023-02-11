@@ -59,28 +59,19 @@ namespace Players
 
       // Instantiate player
       ScenePlayer = PlayerPackage.Instantiate<Player>();
+      ScenePlayer.PlayerInstance = this;
       ScenePlayer.Position = new Vector2(Background.Size.X / 2, Background.Size.Y - 80);
       ScenePlayer.SetPlayerNumber(PlayerNumber);
       ScenePlayer.SetPlayerColor(PlayerColor);
       ScenePlayer.Background = Background;
 
       AddChild(ScenePlayer);
-
-      EnemyManager.ProcessMode = ProcessModeEnum.Pausable;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-      if (Input.IsActionJustPressed("debug1"))
-      {
-        EnemyManager.GetTree().Paused = true;
-      }
-
-      if (Input.IsActionJustPressed("debug2"))
-      {
-        EnemyManager.GetTree().Paused = false;
-      }
+      base._Process(delta);
     }
   }
 }

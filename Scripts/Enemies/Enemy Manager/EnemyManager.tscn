@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://v5q0bkfrd7b3"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyManager.cs" id="1_qjgt4"]
+[ext_resource type="PackedScene" uid="uid://dwe15wcw63iv4" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner01.tscn" id="2_d1psv"]
+[ext_resource type="PackedScene" uid="uid://bagdn8hi5x0m3" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner02.tscn" id="3_sj5p0"]
+[ext_resource type="PackedScene" uid="uid://c8ed3gs4b61am" path="res://Scripts/Enemies/Bee/Spawners/EnemyBee_Spawner03.tscn" id="4_bfhm7"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy Manager/EnemyTimer.cs" id="5_rxtsc"]
+
+[node name="EnemyManager" type="Node2D" node_paths=PackedStringArray("PlayerInstance", "EnemyTimer")]
+process_mode = 1
+script = ExtResource("1_qjgt4")
+BeeSpawnersPackages = Array[PackedScene]([ExtResource("2_d1psv"), ExtResource("3_sj5p0"), ExtResource("4_bfhm7")])
+PlayerInstance = NodePath("")
+EnemyTimer = NodePath("EnemyTimer")
+
+[node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 12.0
+autostart = true
+script = ExtResource("5_rxtsc")

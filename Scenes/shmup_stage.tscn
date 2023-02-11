@@ -23,3 +23,11 @@ position = Vector2(-368, -202)
 position = Vector2(56, -202)
 PlayerNumber = 1
 PlayerColor = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -415.0
+offset_top = -249.0
+offset_right = -375.0
+offset_bottom = -209.0
+scale = Vector2(21.1251, 12.8924)
+color = Color(0, 0, 0, 1)

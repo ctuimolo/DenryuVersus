@@ -54,6 +54,7 @@ namespace Players
     private PlayerInputs _playerInputMap;
     private WorldManager _worldManager;
 
+    public PlayerInstance PlayerInstance;
     public PlayerColors PlayerColor;
     public Vector2 VelocityChange = Vector2.Zero;
     public SpaceBackground Background;
@@ -85,75 +86,89 @@ namespace Players
     public void TakeDamage(int damage)
     {
       StateAnimator.ClearQueue();
-      StateAnimator.Play("respawn invuln");
+      StateAnimator.Play("hit");
+      StateAnimator.Queue("respawn invuln");
       StateAnimator.Queue("Alive and idle");
+
+      PlayerInstance.StateAnimator.Play("flash");
     }
 
     private void CheckMovement()
     {
       VelocityChange = Vector2.Zero;
 
-      if (Input.IsActionPressed(_playerInputMap.Right) && !Input.IsActionPressed(_playerInputMap.Left))
+      if (Alive)
       {
-        VelocityChange += new Vector2(_shipSpeed, 0);
 
-        if (_shipAnimator.AssignedAnimation == "idle")
+        if (Input.IsActionPressed(_playerInputMap.Right) && !Input.IsActionPressed(_playerInputMap.Left))
         {
-          _shipAnimator.Play("turn right");
-        } else if (_shipAnimator.AssignedAnimation == "turn left")
-        {
-          _shipAnimator.PlayBackwards("turn left");
-          _shipAnimator.Play("turn right");
+          VelocityChange += new Vector2(_shipSpeed, 0);
+
+          if (_shipAnimator.AssignedAnimation == "idle")
+          {
+            _shipAnimator.Play("turn right");
+          }
+          else if (_shipAnimator.AssignedAnimation == "turn left")
+          {
+            _shipAnimator.PlayBackwards("turn left");
+            _shipAnimator.Play("turn right");
+          }
         }
-      } else if (Input.IsActionPressed(_playerInputMap.Left) && !Input.IsActionPressed(_playerInputMap.Right))
-      {
-        VelocityChange += new Vector2(-_shipSpeed, 0);
+        else if (Input.IsActionPressed(_playerInputMap.Left) && !Input.IsActionPressed(_playerInputMap.Right))
+        {
+          VelocityChange += new Vector2(-_shipSpeed, 0);
 
-        if (_shipAnimator.AssignedAnimation == "idle")
-        {
-          _shipAnimator.Play("turn left");
-        } else if (_shipAnimator.AssignedAnimation == "turn right")
-        {
-          _shipAnimator.PlayBackwards("turn right");
-          _shipAnimator.Play("turn left");
+          if (_shipAnimator.AssignedAnimation == "idle")
+          {
+            _shipAnimator.Play("turn left");
+          }
+          else if (_shipAnimator.AssignedAnimation == "turn right")
+          {
+            _shipAnimator.PlayBackwards("turn right");
+            _shipAnimator.Play("turn left");
+          }
         }
-      } else
-      {
-        if (!_shipAnimator.IsPlaying() && _shipAnimator.AssignedAnimation == "turn right")
+        else
         {
-          _shipAnimator.PlayBackwards("turn right");
-          _shipAnimator.Queue("idle");
+          if (!_shipAnimator.IsPlaying() && _shipAnimator.AssignedAnimation == "turn right")
+          {
+            _shipAnimator.PlayBackwards("turn right");
+            _shipAnimator.Queue("idle");
+          }
+
+          if (!_shipAnimator.IsPlaying() && _shipAnimator.AssignedAnimation == "turn left")
+          {
+            _shipAnimator.PlayBackwards("turn left");
+            _shipAnimator.Queue("idle");
+          }
         }
 
-        if (!_shipAnimator.IsPlaying() && _shipAnimator.AssignedAnimation == "turn left")
+        if (Input.IsActionPressed(_playerInputMap.Up) && !Input.IsActionPressed(_playerInputMap.Down))
         {
-          _shipAnimator.PlayBackwards("turn left");
-          _shipAnimator.Queue("idle");
+          VelocityChange += new Vector2(0, -_shipSpeed);
         }
-      }
+        else if (Input.IsActionPressed(_playerInputMap.Down) && !Input.IsActionPressed(_playerInputMap.Up))
+        {
+          VelocityChange += new Vector2(0, _shipSpeed);
+        }
 
-      if (Input.IsActionPressed(_playerInputMap.Up) && !Input.IsActionPressed(_playerInputMap.Down))
-      {
-        VelocityChange += new Vector2(0, -_shipSpeed);
-      } else if (Input.IsActionPressed(_playerInputMap.Down) && !Input.IsActionPressed(_playerInputMap.Up))
-      {
-        VelocityChange += new Vector2(0, _shipSpeed);
-      }
+        if (VelocityChange.X != 0 && VelocityChange.Y != 0)
+        {
+          VelocityChange *= _angularVector;
+        }
 
-      if (VelocityChange.X != 0 && VelocityChange.Y != 0)
-      {
-        VelocityChange *= _angularVector;
-      }
-
-      if (VelocityChange.Y > 0)
-      {
-        _thrustAnimator.Play("down");
-      } else if (VelocityChange.Y < 0)
-      {
-        _thrustAnimator.Play("up");
-      } else
-      {
-        _thrustAnimator.Play("idle");
+        if (VelocityChange.Y > 0)
+        {
+          _thrustAnimator.Play("down");
+        }
+        else if (VelocityChange.Y < 0)
+        {
+          _thrustAnimator.Play("up");
+        }
+        else
+        {
+          _thrustAnimator.Play("idle");
+        }
       }
 
       Velocity = VelocityChange;
@@ -161,27 +176,30 @@ namespace Players
 
     private void CheckFireInput()
     {
-      if (_cannonTime > 0)
+      if (Alive)
       {
-        switch (Level)
+        if (_cannonTime > 0)
         {
-          case 1:
-            _cannonTime -= 1;
-            break;
+          switch (Level)
+          {
+            case 1:
+              _cannonTime -= 1;
+              break;
 
-          case 2:
-            _cannonTime -= 1.2f;
-            break;
+            case 2:
+              _cannonTime -= 1.2f;
+              break;
 
-          default:
-            break;
+            default:
+              break;
+          }
         }
-      }
 
-      if (_cannonTime <= 0 && Input.IsActionPressed(_playerInputMap.Button1))
-      {
-        _cannonTime = _cannonDelay;
-        _cannons.Fire();
+        if (_cannonTime <= 0 && Input.IsActionPressed(_playerInputMap.Button1))
+        {
+          _cannonTime = _cannonDelay;
+          _cannons.Fire();
+        }
       }
     }
 

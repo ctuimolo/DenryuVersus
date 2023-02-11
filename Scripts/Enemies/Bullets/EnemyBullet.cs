@@ -39,7 +39,7 @@ namespace Enemies
       _queueDeactivate = false;
       Visible = true;
       ProcessMode = ProcessModeEnum.Always;
-      Position = fireFrom;
+      GlobalPosition = fireFrom;
       Velocity = direction;
     }
 
