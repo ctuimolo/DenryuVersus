@@ -879,14 +879,14 @@
     "Godot.SourceGenerators/4.0.0-rc.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MBa0jX4y4anidJsz7MEP2fHZwqESuepUHDgms4W+Ay8ODVhDodfX3u2XICzu3+M0jQaMeDI2s72C8BpdAF1BRA==",
+      "sha512": "sha512-48Z5xfHlnIGlj5uGP3roWUThtJkkY0SrWJfXiBZTPk6BaysFxSgBop8sBsyIujGlY5x62bmqR+4ZP7PWSHpT5A==",
       "path": "godot.sourcegenerators/4.0.0-rc.1",
       "hashPath": "godot.sourcegenerators.4.0.0-rc.1.nupkg.sha512"
     },
     "GodotSharp/4.0.0-rc.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xpUBEd316OL5iyBz9LmNpwzMEpwvEDTpqR0ewSpSt6QF08GGMtoOZ0mhxhbfRY7jXe3YCp54o0rIEL+jtWyGDA==",
+      "sha512": "sha512-Pty10l6LAcCKepCG+LQkfonDMMDxYbn550ZZDg/0QkRq1aKv0bf6SGikYFxGN5JD/HRjljhpplGYyHdsFR7mBQ==",
       "path": "godotsharp/4.0.0-rc.1",
       "hashPath": "godotsharp.4.0.0-rc.1.nupkg.sha512"
     }
