@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bde6qh1xg7py4"]
+[gd_scene load_steps=6 format=3 uid="uid://dwgsi5a6vdihy"]
 
 [ext_resource type="PackedScene" path="res://Scripts/Cameras/MainCamera.tscn" id="1_5cemp"]
+[ext_resource type="Script" path="res://Scripts/Globals/GameManager.cs" id="1_rp1sh"]
+[ext_resource type="Script" path="res://Scenes/Frame.cs" id="3_257mv"]
 [ext_resource type="Texture2D" uid="uid://c08eaxi14enby" path="res://Resources/Textures/UI/shmup_frame.png" id="3_yt3y6"]
 [ext_resource type="PackedScene" uid="uid://14sy5pf4818b" path="res://Scripts/Players/PlayerInstance.tscn" id="4_br48h"]
-[ext_resource type="Script" path="res://Scenes/Frame.cs" id="4_mq3tw"]
 
-[node name="shmup_stage" type="Node2D"]
+[node name="shmup_stage" type="Node2D" node_paths=PackedStringArray("Player1_Instance", "Player2_Instance")]
+script = ExtResource("1_rp1sh")
+Player1_Instance = NodePath("PlayerInstance1")
+Player2_Instance = NodePath("PlayerInstance2")
 metadata/_edit_lock_ = true
 
 [node name="MainCamera" parent="." instance=ExtResource("1_5cemp")]
@@ -14,7 +18,7 @@ metadata/_edit_lock_ = true
 z_index = 99
 scale = Vector2(2, 2)
 texture = ExtResource("3_yt3y6")
-script = ExtResource("4_mq3tw")
+script = ExtResource("3_257mv")
 
 [node name="PlayerInstance1" parent="." instance=ExtResource("4_br48h")]
 position = Vector2(-368, -202)

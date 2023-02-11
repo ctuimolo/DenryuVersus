@@ -6,7 +6,8 @@ namespace World
   public partial class WorldManager : Node2D
   {
 
-    public String someString = "This is a test";
+    public static int Player1_DeviceNumber = 0;
+    public static int Player2_DeviceNumber = 1;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
