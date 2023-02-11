@@ -80,16 +80,22 @@ namespace Players
 
     public void MakeAlive()
     {
+      StateAnimator.ClearQueue();
       StateAnimator.Play("Alive and idle");
+    }
+
+    public void Spawn()
+    {
+      StateAnimator.ClearQueue();
+      StateAnimator.Play("respawn invuln");
+      StateAnimator.Queue("Alive and idle");
+      PlayerInstance.RepositionPlayerToSpawn();
     }
 
     public void TakeDamage(int damage)
     {
       StateAnimator.ClearQueue();
       StateAnimator.Play("hit");
-      StateAnimator.Queue("respawn invuln");
-      StateAnimator.Queue("Alive and idle");
-
       PlayerInstance.StateAnimator.Play("flash");
     }
 

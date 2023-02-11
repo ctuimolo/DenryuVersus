@@ -68,6 +68,11 @@ namespace Players
       AddChild(ScenePlayer);
     }
 
+    public void RepositionPlayerToSpawn()
+    {
+      ScenePlayer.Position = new Vector2(Background.Size.X / 2, Background.Size.Y - 80);
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b3wxc3h0e2vai"]
+[gd_scene load_steps=31 format=3 uid="uid://b3wxc3h0e2vai"]
 
 [ext_resource type="Script" path="res://Scripts/Players/Player.cs" id="1_aycex"]
 [ext_resource type="Texture2D" uid="uid://c8qa00r1omc44" path="res://Resources/Textures/Ships/ship_wingsup_sheet.png" id="2_gd3e3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://diw6e5hgggdx3" path="res://Resources/Textures/Ships/thrust-Sheet.png" id="7_1va5l"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerHitbox.cs" id="8_ctko7"]
 [ext_resource type="Script" path="res://Scripts/Dynamics/StateAnimator.cs" id="9_p4e65"]
+[ext_resource type="Texture2D" uid="uid://d3pwfstrhb4sd" path="res://Resources/Textures/Particles/explosion-player-Sheet.png" id="10_2lekc"]
 
 [sub_resource type="Animation" id="Animation_b21xg"]
 resource_name = "fire"
@@ -352,7 +353,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_iqc1g"]
 resource_name = "hit"
-length = 0.350002
+length = 2.0
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -361,10 +362,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.366667, 0.383333, 0.4, 0.416667, 0.45, 0.466667, 0.483333, 0.5, 0.516667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -389,6 +390,56 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Spawn"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.366667, 1.18333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.383333, 0.4, 0.416667, 0.433333, 0.45, 0.466667, 0.483333, 0.5, 0.516667, 0.533333, 0.55, 0.566667, 0.583333, 0.6, 0.616667, 0.633333, 0.65, 0.666667, 0.683333, 0.7, 0.716667, 0.733333, 0.75, 0.766667, 0.783333, 0.8, 0.816667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Explosion:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.35, 0.5, 0.666667, 0.816667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 7, 1, 7]
 }
 
 [sub_resource type="Animation" id="Animation_0n2sm"]
@@ -440,6 +491,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdcj5"]
@@ -534,3 +597,10 @@ script = ExtResource("9_p4e65")
 Timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateAnimator"]
+
+[node name="Explosion" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.99536, 1.99536)
+texture = ExtResource("10_2lekc")
+hframes = 3
+vframes = 3
