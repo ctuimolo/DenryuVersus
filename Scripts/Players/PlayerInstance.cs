@@ -8,6 +8,9 @@ namespace Players
   public partial class PlayerInstance : Node2D
   {
     [Export]
+    public int DeviceNumber;
+
+    [Export]
     PlayerNumbers PlayerNumber;
 
     [Export]
@@ -64,6 +67,7 @@ namespace Players
       ScenePlayer.SetPlayerNumber(PlayerNumber);
       ScenePlayer.SetPlayerColor(PlayerColor);
       ScenePlayer.Background = Background;
+      ScenePlayer.DeviceNumber = DeviceNumber;
 
       AddChild(ScenePlayer);
     }

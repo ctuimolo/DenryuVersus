@@ -9,6 +9,9 @@ namespace Players
   {
     #region Exports
     [Export]
+    public int DeviceNumber;
+
+    [Export]
     private StateAnimator StateAnimator;
 
     [Export]
@@ -48,8 +51,13 @@ namespace Players
 
     [Export]
     public Hitbox Hitbox;
-
     #endregion
+
+    private bool _doFire      = false;
+    private bool _doMoveUp    = false;
+    private bool _doMoveDown  = false;
+    private bool _doMoveLeft  = false;
+    private bool _doMoveRight = false;
 
     private PlayerInputs _playerInputMap;
     private WorldManager _worldManager;
@@ -105,8 +113,7 @@ namespace Players
 
       if (Alive)
       {
-
-        if (Input.IsActionPressed(_playerInputMap.Right) && !Input.IsActionPressed(_playerInputMap.Left))
+        if (_doMoveRight && !_doMoveLeft)
         {
           VelocityChange += new Vector2(_shipSpeed, 0);
 
@@ -120,7 +127,7 @@ namespace Players
             _shipAnimator.Play("turn right");
           }
         }
-        else if (Input.IsActionPressed(_playerInputMap.Left) && !Input.IsActionPressed(_playerInputMap.Right))
+        else if (_doMoveLeft && !_doMoveRight)
         {
           VelocityChange += new Vector2(-_shipSpeed, 0);
 
@@ -149,11 +156,11 @@ namespace Players
           }
         }
 
-        if (Input.IsActionPressed(_playerInputMap.Up) && !Input.IsActionPressed(_playerInputMap.Down))
+        if (_doMoveUp && !_doMoveDown)
         {
           VelocityChange += new Vector2(0, -_shipSpeed);
         }
-        else if (Input.IsActionPressed(_playerInputMap.Down) && !Input.IsActionPressed(_playerInputMap.Up))
+        else if (_doMoveDown && !_doMoveUp)
         {
           VelocityChange += new Vector2(0, _shipSpeed);
         }
@@ -201,7 +208,7 @@ namespace Players
           }
         }
 
-        if (_cannonTime <= 0 && Input.IsActionPressed(_playerInputMap.Button1))
+        if (_cannonTime <= 0 && _doFire)
         {
           _cannonTime = _cannonDelay;
           _cannons.Fire();
@@ -243,6 +250,50 @@ namespace Players
     public override void _Input(InputEvent @event)
     {
       base._Input(@event);
+
+      if(@event.Device == DeviceNumber)
+      {
+        if(@event.IsActionPressed(_playerInputMap.Button1))
+        {
+          _doFire = true;
+        }
+        if (@event.IsActionReleased(_playerInputMap.Button1))
+        {
+          _doFire = false;
+        }
+        if (@event.IsActionPressed(_playerInputMap.Up))
+        {
+          _doMoveUp = true;
+        }
+        if (@event.IsActionReleased(_playerInputMap.Up))
+        {
+          _doMoveUp = false;
+        }
+        if (@event.IsActionPressed(_playerInputMap.Down))
+        {
+          _doMoveDown = true;
+        }
+        if (@event.IsActionReleased(_playerInputMap.Down))
+        {
+          _doMoveDown = false;
+        }
+        if (@event.IsActionPressed(_playerInputMap.Left))
+        {
+          _doMoveLeft = true;
+        }
+        if (@event.IsActionReleased(_playerInputMap.Left))
+        {
+          _doMoveLeft = false;
+        }
+        if (@event.IsActionPressed(_playerInputMap.Right))
+        {
+          _doMoveRight = true;
+        }
+        if (@event.IsActionReleased(_playerInputMap.Right))
+        {
+          _doMoveRight = false;
+        }
+      }
     }
   }
 }

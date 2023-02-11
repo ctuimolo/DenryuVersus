@@ -21,6 +21,7 @@ position = Vector2(-368, -202)
 
 [node name="PlayerInstance2" parent="." instance=ExtResource("4_br48h")]
 position = Vector2(56, -202)
+DeviceNumber = 1
 PlayerNumber = 1
 PlayerColor = 1
 
