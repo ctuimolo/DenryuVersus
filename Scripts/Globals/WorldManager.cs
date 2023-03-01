@@ -9,7 +9,7 @@ namespace World
   {
 
     public static int Player1_DeviceNumber = 0;
-    public static int Player2_DeviceNumber = 1;
+    public static int Player2_DeviceNumber = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

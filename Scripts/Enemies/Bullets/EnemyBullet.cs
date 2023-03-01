@@ -27,7 +27,7 @@ namespace Enemies
       ZIndex = Consts.ZORDER_FOREPARTICLE;
 
       Deactivate();
-      
+
       Animator.Play("idle");
 
       Hitbox.AreaEntered += Area2DEntered;
@@ -53,18 +53,15 @@ namespace Enemies
 
     public void Area2DEntered(Area2D other)
     {
-      if (other is Hitbox)
+      if (other is PlayerHitbox)
       {
-        //if (((EnemyHitbox)other).Parent.Alive && ((EnemyHitbox)other).Parent.Interactable)
-        //{
-        //  Collide();
-        //}
+        Velocity = Vector2.Zero;
+        _queueDeactivate = true;
       }
     }
 
     public void Collide()
     {
-      Velocity = Vector2.Zero;
       _queueDeactivate = true;
     }
 
@@ -78,8 +75,14 @@ namespace Enemies
             GlobalPosition.Y + 6 < PlayerInstance.Background.GlobalPosition.Y ||
             GlobalPosition.Y - 6 > PlayerInstance.Background.GlobalPosition.Y + PlayerInstance.Background.Size.Y)
         {
-          Deactivate();
+          _queueDeactivate = true;
         }
+      }
+
+      if(_queueDeactivate)
+      {
+        Deactivate();
+        return;
       }
     }
 
