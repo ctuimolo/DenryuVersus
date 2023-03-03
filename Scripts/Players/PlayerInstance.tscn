@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://14sy5pf4818b"]
+[gd_scene load_steps=9 format=3 uid="uid://14sy5pf4818b"]
 
 [ext_resource type="Script" path="res://Scripts/Players/PlayerInstance.cs" id="1_80doa"]
 [ext_resource type="PackedScene" uid="uid://b3wxc3h0e2vai" path="res://Scripts/Players/Player.tscn" id="2_y5myv"]
 [ext_resource type="PackedScene" uid="uid://deeb5q1nktge6" path="res://Scripts/Backgrounds/SpaceBackground.tscn" id="3_pi4gt"]
 [ext_resource type="PackedScene" path="res://Scripts/Dynamics/Wall.tscn" id="4_fhy36"]
 [ext_resource type="PackedScene" uid="uid://v5q0bkfrd7b3" path="res://Scripts/Enemies/Enemy Manager/EnemyManager.tscn" id="5_g87b2"]
-[ext_resource type="Texture2D" uid="uid://bvamn34kq810j" path="res://Resources/Textures/Particles/power-up-Sheet.png" id="6_c8n87"]
 
 [sub_resource type="Animation" id="Animation_anvke"]
 length = 0.001
@@ -69,29 +68,6 @@ _data = {
 "flash": SubResource("Animation_pacm4")
 }
 
-[sub_resource type="Animation" id="Animation_hffie"]
-resource_name = "idle"
-length = 0.0666683
-loop_mode = 1
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4kv4"]
-_data = {
-"idle": SubResource("Animation_hffie")
-}
-
 [node name="PlayerInstance" type="Node2D" node_paths=PackedStringArray("Background", "EnemyManager", "StateAnimator", "NorthWall", "EastWall", "SouthWall", "WestWall")]
 process_mode = 3
 script = ExtResource("1_80doa")
@@ -129,16 +105,3 @@ PlayerInstance = NodePath("../..")
 
 [node name="PowerUp" type="Node2D" parent="Node2D"]
 position = Vector2(164, 233)
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/PowerUp"]
-position = Vector2(237, 136)
-texture = ExtResource("6_c8n87")
-hframes = 2
-vframes = 2
-frame = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/PowerUp/Sprite2D"]
-speed_scale = 0.52
-libraries = {
-"": SubResource("AnimationLibrary_c4kv4")
-}
